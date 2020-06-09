@@ -1,7 +1,8 @@
-# Auth0toSPM
+# Auth0.swift as a Swift Package
 
-This is a special fork of Auth0.swift that (theoretically) supports Swift Package Manager 🎉😬
-I say "theoretically" because I've only tested the iOS version in a real project (I was able to log in and get tokens etc, but definitely need to test everything else properly)
+This is a special fork of [Auth0.swift](https://github.com/auth0/Auth0.swift) that (theoretically) supports Swift Package Manager 🎉😬
+
+I say "theoretically" because so far I've only tested the iOS version in a real project (I was able to log in and get tokens etc, but definitely need to test everything else properly)
 
 ## Why?
 Because Auth0 is _that_ dependency that is stopping us from moving to the Swift Package Manager
