@@ -109,7 +109,7 @@ $configuration = {
 
     # Test changes - tests currently compile and run but fail (I think maybe because I haven't figured out the best way to get those two .m test files in)
     "import OHHTTPStubs" => "import OHHTTPStubs\nimport OHHTTPStubsSwift" + $comment,
-    'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {' => 'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return (clientId: "CLIENT_ID", domain: "samples.auth0.com");' + $comment
+    #'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {' => 'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return (clientId: "CLIENT_ID", domain: "samples.auth0.com");' + $comment
   },
 }
 

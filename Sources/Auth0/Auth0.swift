@@ -139,7 +139,7 @@ public func users(token: String, domain: String, session: URLSession = .shared) 
     return Management(token: token, url: .a0_url(domain), session: session)
 }
 
-func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return (clientId: "CLIENT_ID", domain: "samples.auth0.com"); // Added by Auth0toSPM(original value 'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {')
+func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {
     guard
         let path = bundle.path(forResource: "Auth0", ofType: "plist"),
         let values = NSDictionary(contentsOfFile: path) as? [String: Any]

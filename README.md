@@ -15,7 +15,7 @@ Steps include:
 2. Add additional `import Foundation` lines where necessary as SPM is happily strict about this
 3. Replace the `WEB_AUTH_PLATFORM` preprocessor macro with `#if os` using the same rules as the Podspec
 4. Create a specific module for Objective-C files due to SPM not supporting multiple languages in a single module. Don't use `<` and `>` in Objective-C imports anymore. Guess where this Objective-C module needs to be imported and add `import` lines for it in the Swift source files
-5. Make similar changes for Tests. Stub the `plistValues(bundle:)` function manually as including the `Auth0.plist` in the bundle won't be supported until Swift 5.3
+5. Make similar changes for Tests. We need to stub the `plistValues(bundle:)` function as including the `Auth0.plist` in the bundle won't be supported until Swift 5.3 - however this breaks the real source so.. it's commented out in `Auth0toSPM.rb` for now - you can make the change manually if you want to run the tests.
 
 You can see what was changed by the script by searching for `// Added by Auth0toSPM` in the source files or looking at 9the diff](https://github.com/maxchuquimia/Auth0.swift/blob/master/changes.diff)
 
