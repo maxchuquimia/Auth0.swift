@@ -120,7 +120,7 @@ index 485690d..6e29b29 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/Auth0Authentication.swift b/tmp/auth0_diff_spm/Auth0Authentication.swift
-index e59b170..8f7a458 100644
+index 66463c2..df75113 100644
 --- a/tmp/auth0_diff_original/Auth0Authentication.swift
 +++ b/tmp/auth0_diff_spm/Auth0Authentication.swift
 @@ -1,3 +1,5 @@
@@ -129,7 +129,7 @@ index e59b170..8f7a458 100644
  // Auth0Authentication.swift
  //
  // Copyright (c) 2016 Auth0 (http://auth0.com)
-@@ -426,3 +428,5 @@ private extension Auth0Authentication {
+@@ -432,3 +434,5 @@ private extension Auth0Authentication {
          return self.tokenExchange(withParameters: parameters)
      }
  }
@@ -238,7 +238,7 @@ index 8ede609..ee5e471 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/Authentication.swift b/tmp/auth0_diff_spm/Authentication.swift
-index 355a633..45fb878 100644
+index a5f2f00..dc965d6 100644
 --- a/tmp/auth0_diff_original/Authentication.swift
 +++ b/tmp/auth0_diff_spm/Authentication.swift
 @@ -1,3 +1,5 @@
@@ -247,7 +247,7 @@ index 355a633..45fb878 100644
  // Authentication.swift
  //
  // Copyright (c) 2016 Auth0 (http://auth0.com)
-@@ -694,7 +696,7 @@ public protocol Authentication: Trackable, Loggable {
+@@ -695,7 +697,7 @@ public protocol Authentication: Trackable, Loggable {
      */
      func jwks() -> Request<JWKS, AuthenticationError>
  
@@ -256,7 +256,7 @@ index 355a633..45fb878 100644
      /**
       Creates a new WebAuth request to authenticate using Safari browser and OAuth authorize flow.
  
-@@ -1283,3 +1285,5 @@ public extension Authentication {
+@@ -1285,3 +1287,5 @@ public extension Authentication {
      }
  
  }
@@ -323,7 +323,7 @@ index 0ba325c..6d7f72b 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/AuthenticationSpec.swift b/tmp/auth0_diff_spm/AuthenticationSpec.swift
-index 95868a9..c50f4be 100644
+index 0dcc57a..f5e5d15 100644
 --- a/tmp/auth0_diff_original/AuthenticationSpec.swift
 +++ b/tmp/auth0_diff_spm/AuthenticationSpec.swift
 @@ -1,3 +1,5 @@
@@ -340,7 +340,7 @@ index 95868a9..c50f4be 100644
  
  @testable import Auth0
  
-@@ -1490,7 +1493,7 @@ class AuthenticationSpec: QuickSpec {
+@@ -1516,7 +1519,7 @@ class AuthenticationSpec: QuickSpec {
              }
          }
  
@@ -1129,7 +1129,7 @@ index 270b40e..22ba320 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/NativeAuth.swift b/tmp/auth0_diff_spm/NativeAuth.swift
-index 253e781..c604fe3 100644
+index 3d2a8b2..5405818 100644
 --- a/tmp/auth0_diff_original/NativeAuth.swift
 +++ b/tmp/auth0_diff_spm/NativeAuth.swift
 @@ -1,3 +1,6 @@
@@ -1139,7 +1139,7 @@ index 253e781..c604fe3 100644
  // NativeAuth.swift
  //
  // Copyright (c) 2017 Auth0 (http://auth0.com)
-@@ -114,3 +117,5 @@ public extension NativeAuthTransaction {
+@@ -125,3 +128,5 @@ public extension NativeAuthTransaction {
          }
      }
  }
