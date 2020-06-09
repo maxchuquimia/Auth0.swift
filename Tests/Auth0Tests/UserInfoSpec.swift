@@ -1,5 +1,5 @@
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // UserInfoSpec.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)

@@ -1,6 +1,6 @@
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
-import UIKit // Added by Auth0toSPM 
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
+import UIKit // Added by Auth0toSPM
 // SafariSessionSpec.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -27,7 +27,7 @@ import Quick
 import Nimble
 import SafariServices
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 
 @testable import Auth0
 

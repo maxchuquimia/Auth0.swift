@@ -1,4 +1,4 @@
-import Auth0ObjC // Added by Auth0toSPM 
+import Auth0ObjC // Added by Auth0toSPM
 // Matchers.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -23,7 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 
 import Foundation
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 import Nimble
 @testable import Auth0
 

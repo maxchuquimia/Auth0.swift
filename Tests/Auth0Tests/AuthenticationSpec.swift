@@ -1,5 +1,5 @@
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // AuthenticationSpec.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -25,7 +25,7 @@ import Auth0ObjC // Added by Auth0toSPM
 import Quick
 import Nimble
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 
 @testable import Auth0
 
@@ -1493,7 +1493,7 @@ class AuthenticationSpec: QuickSpec {
             }
         }
 
-#if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
         describe("spawn WebAuth instance") {
 
             it("should return a WebAuth instance with matching credentials") {

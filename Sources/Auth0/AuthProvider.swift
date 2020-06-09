@@ -1,6 +1,6 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // AuthProvider.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)
@@ -57,4 +57,4 @@ public protocol AuthProvider {
     static func isAvailable() -> Bool
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

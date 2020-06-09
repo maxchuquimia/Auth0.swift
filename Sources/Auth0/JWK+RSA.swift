@@ -1,5 +1,5 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // JWK+RSA.swift
 //
 // Copyright (c) 2020 Auth0 (http://auth0.com)
@@ -61,4 +61,4 @@ extension JWK {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

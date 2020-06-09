@@ -1,6 +1,6 @@
-#if os(iOS) // Added by Auth0toSPM 
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) // Added by Auth0toSPM
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // MobileWebAuth.swift
 //
 // Copyright (c) 2020 Auth0 (http://auth0.com)
@@ -333,4 +333,4 @@ extension AuthenticationServicesSessionCallback: ASWebAuthenticationPresentation
 @available(iOS 11.0, *)
 extension SFAuthenticationSession: AuthSession {}
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

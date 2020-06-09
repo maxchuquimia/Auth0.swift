@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Date.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)
@@ -35,4 +35,4 @@ func date(from string: String) -> Date? {
     return Date(timeIntervalSince1970: interval)
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

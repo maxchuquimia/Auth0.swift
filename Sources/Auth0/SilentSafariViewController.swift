@@ -1,6 +1,6 @@
-#if os(iOS) // Added by Auth0toSPM 
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) // Added by Auth0toSPM
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // SilentSafariViewController.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)
@@ -49,4 +49,4 @@ class SilentSafariViewController: SFSafariViewController, SFSafariViewController
 
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "A0SHA.h" // Added by Auth0toSPM (original value '#import <A0SHA.h>')
+#import "A0SHA.h" // Added by Auth0toSPM(original value '#import <A0SHA.h>')
 #import <CommonCrypto/CommonHMAC.h>
 
 static NSString * const kDefaultSHAAlgorithm = @"sha256";

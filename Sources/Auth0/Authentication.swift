@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Authentication.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -696,7 +696,7 @@ public protocol Authentication: Trackable, Loggable {
     */
     func jwks() -> Request<JWKS, AuthenticationError>
 
-#if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
     /**
      Creates a new WebAuth request to authenticate using Safari browser and OAuth authorize flow.
 
@@ -1286,4 +1286,4 @@ public extension Authentication {
 
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

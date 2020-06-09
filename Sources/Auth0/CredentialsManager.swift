@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // CredentialsManager.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)
@@ -25,7 +25,7 @@ import Auth0ObjC // Added by Auth0toSPM
 import Foundation
 import SimpleKeychain
 import JWTDecode
-#if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 import LocalAuthentication
 #endif
 
@@ -35,7 +35,7 @@ public struct CredentialsManager {
     private let storage: A0SimpleKeychain
     private let storeKey: String
     private let authentication: Authentication
-    #if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
     private var bioAuth: BioAuthentication?
     #endif
 
@@ -57,7 +57,7 @@ public struct CredentialsManager {
     ///   - title: main message to display in TouchID prompt
     ///   - cancelTitle: cancel message to display in TouchID prompt (iOS 10+)
     ///   - fallbackTitle: fallback message to display in TouchID prompt after a failed match
-    #if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
     @available(*, deprecated, message: "see enableBiometrics(withTitle title:, cancelTitle:, fallbackTitle:)")
     public mutating func enableTouchAuth(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
         self.enableBiometrics(withTitle: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
@@ -70,7 +70,7 @@ public struct CredentialsManager {
     ///   - title: main message to display when Touch ID is used
     ///   - cancelTitle: cancel message to display when Touch ID is used (iOS 10+)
     ///   - fallbackTitle: fallback message to display when Touch ID is used after a failed match
-    #if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
     public mutating func enableBiometrics(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
         self.bioAuth = BioAuthentication(authContext: LAContext(), title: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
     }
@@ -148,7 +148,7 @@ public struct CredentialsManager {
     ///   - callback: callback with the user's credentials or the cause of the error.
     /// - Important: This method only works for a refresh token obtained after auth with OAuth 2.0 API Authorization.
     /// - Note: [Auth0 Refresh Tokens Docs](https://auth0.com/docs/tokens/refresh-token)
-    #if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
     public func credentials(withScope scope: String? = nil, callback: @escaping (CredentialsManagerError?, Credentials?) -> Void) {
         guard self.hasValid() else { return callback(.noCredentials, nil) }
         if #available(iOS 9.0, macOS 10.15, *), let bioAuth = self.bioAuth {
@@ -209,4 +209,4 @@ public struct CredentialsManager {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

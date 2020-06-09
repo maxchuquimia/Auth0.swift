@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Requestable.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -30,4 +30,4 @@ protocol Requestable {
     func start(_ callback: @escaping (Result<ResultType>) -> Void)
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

@@ -1,5 +1,5 @@
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // NativeAuthSpec.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)
@@ -26,7 +26,7 @@ import Quick
 import Nimble
 import SafariServices
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 
 @testable import Auth0
 

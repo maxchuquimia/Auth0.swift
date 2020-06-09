@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Credentials.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -95,4 +95,4 @@ public class Credentials: NSObject, JSONObjectPayload, NSSecureCoding {
     public static var supportsSecureCoding: Bool = true
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

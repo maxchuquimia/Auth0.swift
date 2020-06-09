@@ -7,7 +7,7 @@
 # CONFIGURE THESE VARIABLES
 $spm_repo_location = "/Users/maxc/Desktop/xcode/Auth0SPM"
 $auth0_repo_location = "/Users/maxc/Desktop/xcode/Auth0.swift"
-$comment = " // Added by Auth0toSPM "
+$comment = " // Added by Auth0toSPM"
 
 ######################## PASTE PODSPEC FILE DEFINITIONS BELOW ########################
 
@@ -213,5 +213,26 @@ all_swift_tests.each do | p |
 end
 
 
-# Copy the licence accross too
+# Copy the licence across too
 FileUtils.cp($auth0_repo_location + "/LICENSE", $spm_repo_location + "/LICENSE")
+
+loc_a = "/tmp/auth0_diff_original"
+loc_b = "/tmp/auth0_diff_spm"
+
+# Create a patch so we can see what's changed
+FileUtils.mkdir_p(loc_a)
+FileUtils.mkdir_p(loc_b)
+
+FileUtils.rm_rf(loc_a + "/.")
+FileUtils.rm_rf(loc_b + "/.")
+
+a = all_swift_files + objc_files + all_swift_tests
+a.each do | p |
+  FileUtils.cp(p, loc_a)
+end
+
+FileUtils.cp_r($spm_repo_location + "/Sources/Auth0/.", loc_b)
+FileUtils.cp_r($spm_repo_location + "/Sources/Auth0ObjC/.", loc_b)
+FileUtils.cp_r($spm_repo_location + "/Tests/Auth0Tests/.", loc_b)
+
+`git diff #{loc_a} #{loc_b} > #{$spm_repo_location + "/changes.diff"}`

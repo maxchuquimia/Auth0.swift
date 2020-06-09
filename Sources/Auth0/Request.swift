@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Request.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -126,4 +126,4 @@ public struct ConcatRequest<F, S, E: Auth0Error>: Requestable {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

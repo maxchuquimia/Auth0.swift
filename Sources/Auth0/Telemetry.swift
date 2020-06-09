@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Telemetry.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -158,4 +158,4 @@ extension Trackable {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

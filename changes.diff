@@ -1,0 +1,1727 @@
+diff --git a/tmp/auth0_diff_spm/.DS_Store b/tmp/auth0_diff_spm/.DS_Store
+new file mode 100644
+index 0000000..5008ddf
+Binary files /dev/null and b/tmp/auth0_diff_spm/.DS_Store differ
+diff --git a/tmp/auth0_diff_original/A0RSA.m b/tmp/auth0_diff_spm/A0RSA.m
+index ad83944..d334b18 100644
+--- a/tmp/auth0_diff_original/A0RSA.m
++++ b/tmp/auth0_diff_spm/A0RSA.m
+@@ -20,7 +20,7 @@
+ // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ // THE SOFTWARE.
+ 
+-#import <A0RSA.h>
++#import "A0RSA.h" // Added by Auth0toSPM(original value '#import <A0RSA.h>')
+ #import <CommonCrypto/CommonCrypto.h>
+ 
+ @interface A0RSA ()
+diff --git a/tmp/auth0_diff_original/A0SHA.m b/tmp/auth0_diff_spm/A0SHA.m
+index ff1c8ff..ff34f36 100644
+--- a/tmp/auth0_diff_original/A0SHA.m
++++ b/tmp/auth0_diff_spm/A0SHA.m
+@@ -20,7 +20,7 @@
+ // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ // THE SOFTWARE.
+ 
+-#import <A0SHA.h>
++#import "A0SHA.h" // Added by Auth0toSPM(original value '#import <A0SHA.h>')
+ #import <CommonCrypto/CommonHMAC.h>
+ 
+ static NSString * const kDefaultSHAAlgorithm = @"sha256";
+diff --git a/tmp/auth0_diff_original/A0SimpleKeychain+RSAPublicKey.swift b/tmp/auth0_diff_spm/A0SimpleKeychain+RSAPublicKey.swift
+index e23130e..a4ac3ab 100644
+--- a/tmp/auth0_diff_original/A0SimpleKeychain+RSAPublicKey.swift
++++ b/tmp/auth0_diff_spm/A0SimpleKeychain+RSAPublicKey.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // A0SimpleKeychain+RSAPublicKey.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -38,3 +40,5 @@ extension A0SimpleKeychain {
+         return result == errSecSuccess
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Array+Encode.swift b/tmp/auth0_diff_spm/Array+Encode.swift
+index 6dda54f..3f524a9 100644
+--- a/tmp/auth0_diff_original/Array+Encode.swift
++++ b/tmp/auth0_diff_spm/Array+Encode.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Array+Encode.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -38,3 +40,5 @@ extension Array where Element == UInt8 {
+         return encodedBytes
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Auth0.h b/tmp/auth0_diff_original/Auth0.h
+deleted file mode 100644
+index 5c1ceca..0000000
+--- a/tmp/auth0_diff_original/Auth0.h
++++ /dev/null
+@@ -1,37 +0,0 @@
+-// Auth0.h
+-//
+-// Copyright (c) 2016 Auth0 (http://auth0.com)
+-//
+-// Permission is hereby granted, free of charge, to any person obtaining a copy
+-// of this software and associated documentation files (the "Software"), to deal
+-// in the Software without restriction, including without limitation the rights
+-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-// copies of the Software, and to permit persons to whom the Software is
+-// furnished to do so, subject to the following conditions:
+-//
+-// The above copyright notice and this permission notice shall be included in
+-// all copies or substantial portions of the Software.
+-//
+-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+-// THE SOFTWARE.
+-
+-#import <Foundation/Foundation.h>
+-
+-//! Project version number for Auth0.
+-FOUNDATION_EXPORT double Auth0VersionNumber;
+-
+-//! Project version string for Auth0.
+-FOUNDATION_EXPORT const unsigned char Auth0VersionString[];
+-
+-// In this header, you should import all the public headers of your framework using statements like #import <Auth0/PublicHeader.h>
+-
+-#if TARGET_OS_IOS || TARGET_OS_OSX
+-#import <Auth0/A0ChallengeGenerator.h>
+-#import <Auth0/A0SHA.h>
+-#import <Auth0/A0RSA.h>
+-#endif
+diff --git a/tmp/auth0_diff_original/Auth0.swift b/tmp/auth0_diff_spm/Auth0.swift
+index 485690d..6ec55df 100644
+--- a/tmp/auth0_diff_original/Auth0.swift
++++ b/tmp/auth0_diff_spm/Auth0.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Auth0.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -137,7 +139,7 @@ public func users(token: String, domain: String, session: URLSession = .shared)
+     return Management(token: token, url: .a0_url(domain), session: session)
+ }
+ 
+-func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {
++func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return (clientId: "CLIENT_ID", domain: "samples.auth0.com"); // Added by Auth0toSPM(original value 'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {')
+     guard
+         let path = bundle.path(forResource: "Auth0", ofType: "plist"),
+         let values = NSDictionary(contentsOfFile: path) as? [String: Any]
+@@ -156,3 +158,5 @@ func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {
+         }
+     return (clientId: clientId, domain: domain)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Auth0Authentication.swift b/tmp/auth0_diff_spm/Auth0Authentication.swift
+index e59b170..8f7a458 100644
+--- a/tmp/auth0_diff_original/Auth0Authentication.swift
++++ b/tmp/auth0_diff_spm/Auth0Authentication.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Auth0Authentication.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -426,3 +428,5 @@ private extension Auth0Authentication {
+         return self.tokenExchange(withParameters: parameters)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Auth0Error.swift b/tmp/auth0_diff_spm/Auth0Error.swift
+index b640d98..4d22d52 100644
+--- a/tmp/auth0_diff_original/Auth0Error.swift
++++ b/tmp/auth0_diff_spm/Auth0Error.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Auth0Error.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -38,3 +40,5 @@ public protocol Auth0Error: Error {
+     /// The code of the error as a String
+     var code: String { get }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Auth0Spec.swift b/tmp/auth0_diff_spm/Auth0Spec.swift
+index 43c8095..948dbba 100644
+--- a/tmp/auth0_diff_original/Auth0Spec.swift
++++ b/tmp/auth0_diff_spm/Auth0Spec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Auth0Spec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -23,6 +25,7 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/AuthCancelable.swift b/tmp/auth0_diff_spm/AuthCancelable.swift
+index 196eca4..603443a 100644
+--- a/tmp/auth0_diff_original/AuthCancelable.swift
++++ b/tmp/auth0_diff_spm/AuthCancelable.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthCancelable.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -31,3 +34,5 @@ public protocol AuthCancelable {
+     func cancel()
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthProvider.swift b/tmp/auth0_diff_spm/AuthProvider.swift
+index 625e4f0..5c99104 100644
+--- a/tmp/auth0_diff_original/AuthProvider.swift
++++ b/tmp/auth0_diff_spm/AuthProvider.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthProvider.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -53,3 +56,5 @@ public protocol AuthProvider {
+      */
+     static func isAvailable() -> Bool
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthSession.swift b/tmp/auth0_diff_spm/AuthSession.swift
+index 95d04f0..04a1cac 100644
+--- a/tmp/auth0_diff_original/AuthSession.swift
++++ b/tmp/auth0_diff_spm/AuthSession.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthSession.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -26,3 +29,5 @@ protocol AuthSession {
+     func cancel()
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthTransaction.swift b/tmp/auth0_diff_spm/AuthTransaction.swift
+index 8ede609..ee5e471 100644
+--- a/tmp/auth0_diff_original/AuthTransaction.swift
++++ b/tmp/auth0_diff_spm/AuthTransaction.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthTransaction.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -35,3 +38,5 @@ public protocol AuthTransaction: AuthResumable, AuthCancelable {
+     var state: String? { get }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Authentication.swift b/tmp/auth0_diff_spm/Authentication.swift
+index 355a633..45fb878 100644
+--- a/tmp/auth0_diff_original/Authentication.swift
++++ b/tmp/auth0_diff_spm/Authentication.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Authentication.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -694,7 +696,7 @@ public protocol Authentication: Trackable, Loggable {
+     */
+     func jwks() -> Request<JWKS, AuthenticationError>
+ 
+-#if WEB_AUTH_PLATFORM
++#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+     /**
+      Creates a new WebAuth request to authenticate using Safari browser and OAuth authorize flow.
+ 
+@@ -1283,3 +1285,5 @@ public extension Authentication {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthenticationError.swift b/tmp/auth0_diff_spm/AuthenticationError.swift
+index 165ba67..0a54db2 100644
+--- a/tmp/auth0_diff_original/AuthenticationError.swift
++++ b/tmp/auth0_diff_spm/AuthenticationError.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthenticationError.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -161,3 +163,5 @@ extension AuthenticationError: CustomNSError {
+         ]
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthenticationErrorSpec.swift b/tmp/auth0_diff_spm/AuthenticationErrorSpec.swift
+index e01e632..d691aba 100644
+--- a/tmp/auth0_diff_original/AuthenticationErrorSpec.swift
++++ b/tmp/auth0_diff_spm/AuthenticationErrorSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthenticationErrorSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/AuthenticationServicesSession.swift b/tmp/auth0_diff_spm/AuthenticationServicesSession.swift
+index 6e88b0c..33083fa 100644
+--- a/tmp/auth0_diff_original/AuthenticationServicesSession.swift
++++ b/tmp/auth0_diff_spm/AuthenticationServicesSession.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthenticationServicesSession.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -69,3 +72,5 @@ final class AuthenticationServicesSession: SessionTransaction {
+ @available(iOS 12.0, macOS 10.15, *)
+ extension ASWebAuthenticationSession: AuthSession {}
+ #endif
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthenticationServicesSessionCallback.swift b/tmp/auth0_diff_spm/AuthenticationServicesSessionCallback.swift
+index 0ba325c..6d7f72b 100644
+--- a/tmp/auth0_diff_original/AuthenticationServicesSessionCallback.swift
++++ b/tmp/auth0_diff_spm/AuthenticationServicesSessionCallback.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthenticationServicesSessionCallback.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -47,3 +50,5 @@ final class AuthenticationServicesSessionCallback: SessionCallbackTransaction {
+ 
+ }
+ #endif
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/AuthenticationSpec.swift b/tmp/auth0_diff_spm/AuthenticationSpec.swift
+index 95868a9..c50f4be 100644
+--- a/tmp/auth0_diff_original/AuthenticationSpec.swift
++++ b/tmp/auth0_diff_spm/AuthenticationSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // AuthenticationSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -23,6 +25,7 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+@@ -1490,7 +1493,7 @@ class AuthenticationSpec: QuickSpec {
+             }
+         }
+ 
+-#if WEB_AUTH_PLATFORM
++#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+         describe("spawn WebAuth instance") {
+ 
+             it("should return a WebAuth instance with matching credentials") {
+diff --git a/tmp/auth0_diff_original/BaseAuthTransaction.swift b/tmp/auth0_diff_spm/BaseAuthTransaction.swift
+index d0afa66..32cd564 100644
+--- a/tmp/auth0_diff_original/BaseAuthTransaction.swift
++++ b/tmp/auth0_diff_spm/BaseAuthTransaction.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // BaseAuthTransaction.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -69,3 +72,5 @@ class BaseAuthTransaction: NSObject, AuthTransaction {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/BaseAuthTransactionSpec.swift b/tmp/auth0_diff_spm/BaseAuthTransactionSpec.swift
+index e259e28..50bc499 100644
+--- a/tmp/auth0_diff_original/BaseAuthTransactionSpec.swift
++++ b/tmp/auth0_diff_spm/BaseAuthTransactionSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // BaseAuthTransactionSpec.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -23,6 +25,7 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/BaseWebAuth.swift b/tmp/auth0_diff_spm/BaseWebAuth.swift
+index d0e2d37..7447236 100644
+--- a/tmp/auth0_diff_original/BaseWebAuth.swift
++++ b/tmp/auth0_diff_spm/BaseWebAuth.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // BaseWebAuth.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -281,3 +284,5 @@ extension Auth0Authentication {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/BioAuthentication.swift b/tmp/auth0_diff_spm/BioAuthentication.swift
+index 00868ea..e5ca584 100644
+--- a/tmp/auth0_diff_original/BioAuthentication.swift
++++ b/tmp/auth0_diff_spm/BioAuthentication.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // BioAuthentication.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -60,3 +62,5 @@ struct BioAuthentication {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/BioAuthenticationSpec.swift b/tmp/auth0_diff_spm/BioAuthenticationSpec.swift
+index 90dc489..8d9d7f4 100644
+--- a/tmp/auth0_diff_original/BioAuthenticationSpec.swift
++++ b/tmp/auth0_diff_spm/BioAuthenticationSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // BioAuthenticationSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -23,6 +25,7 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ import LocalAuthentication
+ 
+ @testable import Auth0
+diff --git a/tmp/auth0_diff_original/ChallengeGeneratorSpec.swift b/tmp/auth0_diff_spm/ChallengeGeneratorSpec.swift
+index 2521ddd..17bc88d 100644
+--- a/tmp/auth0_diff_original/ChallengeGeneratorSpec.swift
++++ b/tmp/auth0_diff_spm/ChallengeGeneratorSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ChallengeGeneratorSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/ClaimValidators.swift b/tmp/auth0_diff_spm/ClaimValidators.swift
+index 40d3759..0088a81 100644
+--- a/tmp/auth0_diff_original/ClaimValidators.swift
++++ b/tmp/auth0_diff_spm/ClaimValidators.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ClaimValidators.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -268,3 +270,5 @@ struct IDTokenAuthTimeValidator: JWTValidator {
+         return nil
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/ClaimValidatorsSpec.swift b/tmp/auth0_diff_spm/ClaimValidatorsSpec.swift
+index bc15436..8fc63dc 100644
+--- a/tmp/auth0_diff_original/ClaimValidatorsSpec.swift
++++ b/tmp/auth0_diff_spm/ClaimValidatorsSpec.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // ClaimValidatorsSpec.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -24,6 +25,7 @@ import Foundation
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/ControllerModalPresenter.swift b/tmp/auth0_diff_spm/ControllerModalPresenter.swift
+index 862f9cc..8684969 100644
+--- a/tmp/auth0_diff_original/ControllerModalPresenter.swift
++++ b/tmp/auth0_diff_spm/ControllerModalPresenter.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ControllerModalPresenter.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -55,3 +58,5 @@ struct ControllerModalPresenter {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/ControllerModalPresenterSpec.swift b/tmp/auth0_diff_spm/ControllerModalPresenterSpec.swift
+index 5e9471f..c38bbee 100644
+--- a/tmp/auth0_diff_original/ControllerModalPresenterSpec.swift
++++ b/tmp/auth0_diff_spm/ControllerModalPresenterSpec.swift
+@@ -1,3 +1,6 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
++import UIKit // Added by Auth0toSPM
+ // ControllerModalPresenterSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Credentials.swift b/tmp/auth0_diff_spm/Credentials.swift
+index f4d9bd4..8164adf 100644
+--- a/tmp/auth0_diff_original/Credentials.swift
++++ b/tmp/auth0_diff_spm/Credentials.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Credentials.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -92,3 +94,5 @@ public class Credentials: NSObject, JSONObjectPayload, NSSecureCoding {
+ 
+     public static var supportsSecureCoding: Bool = true
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/CredentialsManager.swift b/tmp/auth0_diff_spm/CredentialsManager.swift
+index ff5970a..fc42338 100644
+--- a/tmp/auth0_diff_original/CredentialsManager.swift
++++ b/tmp/auth0_diff_spm/CredentialsManager.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // CredentialsManager.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -23,7 +25,7 @@
+ import Foundation
+ import SimpleKeychain
+ import JWTDecode
+-#if WEB_AUTH_PLATFORM
++#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+ import LocalAuthentication
+ #endif
+ 
+@@ -33,7 +35,7 @@ public struct CredentialsManager {
+     private let storage: A0SimpleKeychain
+     private let storeKey: String
+     private let authentication: Authentication
+-    #if WEB_AUTH_PLATFORM
++    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+     private var bioAuth: BioAuthentication?
+     #endif
+ 
+@@ -55,7 +57,7 @@ public struct CredentialsManager {
+     ///   - title: main message to display in TouchID prompt
+     ///   - cancelTitle: cancel message to display in TouchID prompt (iOS 10+)
+     ///   - fallbackTitle: fallback message to display in TouchID prompt after a failed match
+-    #if WEB_AUTH_PLATFORM
++    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+     @available(*, deprecated, message: "see enableBiometrics(withTitle title:, cancelTitle:, fallbackTitle:)")
+     public mutating func enableTouchAuth(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
+         self.enableBiometrics(withTitle: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
+@@ -68,7 +70,7 @@ public struct CredentialsManager {
+     ///   - title: main message to display when Touch ID is used
+     ///   - cancelTitle: cancel message to display when Touch ID is used (iOS 10+)
+     ///   - fallbackTitle: fallback message to display when Touch ID is used after a failed match
+-    #if WEB_AUTH_PLATFORM
++    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+     public mutating func enableBiometrics(withTitle title: String, cancelTitle: String? = nil, fallbackTitle: String? = nil) {
+         self.bioAuth = BioAuthentication(authContext: LAContext(), title: title, cancelTitle: cancelTitle, fallbackTitle: fallbackTitle)
+     }
+@@ -146,7 +148,7 @@ public struct CredentialsManager {
+     ///   - callback: callback with the user's credentials or the cause of the error.
+     /// - Important: This method only works for a refresh token obtained after auth with OAuth 2.0 API Authorization.
+     /// - Note: [Auth0 Refresh Tokens Docs](https://auth0.com/docs/tokens/refresh-token)
+-    #if WEB_AUTH_PLATFORM
++    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+     public func credentials(withScope scope: String? = nil, callback: @escaping (CredentialsManagerError?, Credentials?) -> Void) {
+         guard self.hasValid() else { return callback(.noCredentials, nil) }
+         if #available(iOS 9.0, macOS 10.15, *), let bioAuth = self.bioAuth {
+@@ -206,3 +208,5 @@ public struct CredentialsManager {
+         return false
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/CredentialsManagerError.swift b/tmp/auth0_diff_spm/CredentialsManagerError.swift
+index 8a78fc3..d385e8e 100644
+--- a/tmp/auth0_diff_original/CredentialsManagerError.swift
++++ b/tmp/auth0_diff_spm/CredentialsManagerError.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // CredentialsManagerError.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -29,3 +31,5 @@ public enum CredentialsManagerError: Error {
+     case touchFailed(Error)
+     case revokeFailed(Error)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/CredentialsManagerSpec.swift b/tmp/auth0_diff_spm/CredentialsManagerSpec.swift
+index a7c24e7..960fd46 100644
+--- a/tmp/auth0_diff_original/CredentialsManagerSpec.swift
++++ b/tmp/auth0_diff_spm/CredentialsManagerSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // CredentialsManagerSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -23,8 +25,9 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ import SimpleKeychain
+-#if WEB_AUTH_PLATFORM
++#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+ import LocalAuthentication
+ #endif
+ 
+diff --git a/tmp/auth0_diff_original/CredentialsSpec.swift b/tmp/auth0_diff_spm/CredentialsSpec.swift
+index 97509e3..09f5c71 100644
+--- a/tmp/auth0_diff_original/CredentialsSpec.swift
++++ b/tmp/auth0_diff_spm/CredentialsSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // CredentialsSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/CryptoExtensions.swift b/tmp/auth0_diff_spm/CryptoExtensions.swift
+index 4dd5549..e915e71 100644
+--- a/tmp/auth0_diff_original/CryptoExtensions.swift
++++ b/tmp/auth0_diff_spm/CryptoExtensions.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // CryptoExtensions.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Date.swift b/tmp/auth0_diff_spm/Date.swift
+index c0c7fcd..1abd0cf 100644
+--- a/tmp/auth0_diff_original/Date.swift
++++ b/tmp/auth0_diff_spm/Date.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Date.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -32,3 +34,5 @@ func date(from string: String) -> Date? {
+     }
+     return Date(timeIntervalSince1970: interval)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/DesktopWebAuth.swift b/tmp/auth0_diff_spm/DesktopWebAuth.swift
+index e2016df..79cdc0c 100644
+--- a/tmp/auth0_diff_original/DesktopWebAuth.swift
++++ b/tmp/auth0_diff_spm/DesktopWebAuth.swift
+@@ -1,3 +1,6 @@
++#if os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // DesktopWebAuth.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -115,3 +118,5 @@ extension AuthenticationServicesSessionCallback: ASWebAuthenticationPresentation
+ 
+ }
+ #endif
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Generators.swift b/tmp/auth0_diff_spm/Generators.swift
+index d9eb7be..c76c8f6 100644
+--- a/tmp/auth0_diff_original/Generators.swift
++++ b/tmp/auth0_diff_spm/Generators.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // Generators.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Handlers.swift b/tmp/auth0_diff_spm/Handlers.swift
+index 8833a87..08f1c35 100644
+--- a/tmp/auth0_diff_original/Handlers.swift
++++ b/tmp/auth0_diff_spm/Handlers.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Handlers.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -89,3 +91,5 @@ func noBody(from response: Response<AuthenticationError>, callback: Request<Void
+         callback(.failure(error: error))
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/IDTokenSignatureValidator.swift b/tmp/auth0_diff_spm/IDTokenSignatureValidator.swift
+index dbeb206..11824b6 100644
+--- a/tmp/auth0_diff_original/IDTokenSignatureValidator.swift
++++ b/tmp/auth0_diff_spm/IDTokenSignatureValidator.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenSignatureValidator.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -85,3 +87,5 @@ struct IDTokenSignatureValidator: JWTAsyncValidator {
+         return nil
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/IDTokenSignatureValidatorSpec.swift b/tmp/auth0_diff_spm/IDTokenSignatureValidatorSpec.swift
+index 86da496..e631dc4 100644
+--- a/tmp/auth0_diff_original/IDTokenSignatureValidatorSpec.swift
++++ b/tmp/auth0_diff_spm/IDTokenSignatureValidatorSpec.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenSignatureValidatorSpec.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -24,6 +25,7 @@ import Foundation
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/IDTokenValidator.swift b/tmp/auth0_diff_spm/IDTokenValidator.swift
+index 86793cf..6007ec9 100644
+--- a/tmp/auth0_diff_original/IDTokenValidator.swift
++++ b/tmp/auth0_diff_spm/IDTokenValidator.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenValidator.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -95,3 +97,5 @@ func validate(idToken: String?,
+                                      context: context)
+     validator.validate(jwt, callback: callback)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/IDTokenValidatorBaseSpec.swift b/tmp/auth0_diff_spm/IDTokenValidatorBaseSpec.swift
+index 85885c7..04fddc7 100644
+--- a/tmp/auth0_diff_original/IDTokenValidatorBaseSpec.swift
++++ b/tmp/auth0_diff_spm/IDTokenValidatorBaseSpec.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenValidatorBaseSpec.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/IDTokenValidatorContext.swift b/tmp/auth0_diff_spm/IDTokenValidatorContext.swift
+index d9ad664..dfd9e3a 100644
+--- a/tmp/auth0_diff_original/IDTokenValidatorContext.swift
++++ b/tmp/auth0_diff_spm/IDTokenValidatorContext.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenValidatorContext.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -53,3 +55,5 @@ struct IDTokenValidatorContext: IDTokenSignatureValidatorContext, IDTokenClaimsV
+                   nonce: nonce)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/IDTokenValidatorMocks.swift b/tmp/auth0_diff_spm/IDTokenValidatorMocks.swift
+index 4b33f1c..afb0254 100644
+--- a/tmp/auth0_diff_original/IDTokenValidatorMocks.swift
++++ b/tmp/auth0_diff_spm/IDTokenValidatorMocks.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenValidatorMocks.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/IDTokenValidatorSpec.swift b/tmp/auth0_diff_spm/IDTokenValidatorSpec.swift
+index 2d00652..e7557d3 100644
+--- a/tmp/auth0_diff_original/IDTokenValidatorSpec.swift
++++ b/tmp/auth0_diff_spm/IDTokenValidatorSpec.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // IDTokenValidatorSpec.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -24,6 +25,7 @@ import Foundation
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/Identity.swift b/tmp/auth0_diff_spm/Identity.swift
+index 3eec7c3..5fd8878 100644
+--- a/tmp/auth0_diff_original/Identity.swift
++++ b/tmp/auth0_diff_spm/Identity.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Identity.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -76,3 +78,5 @@ public class Identity: NSObject, JSONObjectPayload {
+         self.init(identifier: identifier, provider: provider, connection: connection, social: social, profileData: profileData, accessToken: accessToken, expiresIn: expiresIn, accessTokenSecret: accessTokenSecret)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/IdentitySpec.swift b/tmp/auth0_diff_spm/IdentitySpec.swift
+index 58c59ab..bb39aee 100644
+--- a/tmp/auth0_diff_original/IdentitySpec.swift
++++ b/tmp/auth0_diff_spm/IdentitySpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // IdentitySpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/JSONObjectPayload.swift b/tmp/auth0_diff_spm/JSONObjectPayload.swift
+index a9058e5..058cd30 100644
+--- a/tmp/auth0_diff_original/JSONObjectPayload.swift
++++ b/tmp/auth0_diff_spm/JSONObjectPayload.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // JSONObjectPayload.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -27,3 +29,5 @@ protocol JSONObjectPayload {
+     init?(json: [String: Any])
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/JWK+RSA.swift b/tmp/auth0_diff_spm/JWK+RSA.swift
+index f699135..dd84d2c 100644
+--- a/tmp/auth0_diff_original/JWK+RSA.swift
++++ b/tmp/auth0_diff_spm/JWK+RSA.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // JWK+RSA.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -58,3 +60,5 @@ extension JWK {
+         return SecKeyCreateWithData(derEncodedData as CFData, attributes as CFDictionary, nil)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/JWKS.swift b/tmp/auth0_diff_spm/JWKS.swift
+index 370319e..4917dcf 100644
+--- a/tmp/auth0_diff_original/JWKS.swift
++++ b/tmp/auth0_diff_spm/JWKS.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // JWKS.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -55,3 +57,5 @@ public struct JWK: Codable {
+         case rsaExponent = "e"
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/JWKSpec.swift b/tmp/auth0_diff_spm/JWKSpec.swift
+index 25173e8..4dd28d8 100644
+--- a/tmp/auth0_diff_original/JWKSpec.swift
++++ b/tmp/auth0_diff_spm/JWKSpec.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // JWKSpec.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -24,6 +25,7 @@ import Foundation
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/JWT+Header.swift b/tmp/auth0_diff_spm/JWT+Header.swift
+index 34acf68..e8954da 100644
+--- a/tmp/auth0_diff_original/JWT+Header.swift
++++ b/tmp/auth0_diff_spm/JWT+Header.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // JWT+Header.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -33,3 +35,5 @@ extension JWT {
+         return header["kid"] as? String
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/JWTAlgorithm.swift b/tmp/auth0_diff_spm/JWTAlgorithm.swift
+index 361afcd..48c6199 100644
+--- a/tmp/auth0_diff_original/JWTAlgorithm.swift
++++ b/tmp/auth0_diff_spm/JWTAlgorithm.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // JWTAlgorithm.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -42,3 +44,5 @@ enum JWTAlgorithm: String {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/JWTAlgorithmSpec.swift b/tmp/auth0_diff_spm/JWTAlgorithmSpec.swift
+index a99f6d3..89b4b9a 100644
+--- a/tmp/auth0_diff_original/JWTAlgorithmSpec.swift
++++ b/tmp/auth0_diff_spm/JWTAlgorithmSpec.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // JWTAlgorithmSpec.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Loggable.swift b/tmp/auth0_diff_spm/Loggable.swift
+index 3a620d5..a827f6d 100644
+--- a/tmp/auth0_diff_original/Loggable.swift
++++ b/tmp/auth0_diff_spm/Loggable.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Loggable.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -60,3 +62,5 @@ public extension Loggable {
+         return loggable
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Logger.swift b/tmp/auth0_diff_spm/Logger.swift
+index 310725b..0fcaef0 100644
+--- a/tmp/auth0_diff_original/Logger.swift
++++ b/tmp/auth0_diff_spm/Logger.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Logger.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -77,3 +79,5 @@ struct DefaultLogger: Logger {
+         output.log(message: "\(source ?? "URL"): \(url.absoluteString)")
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/LoggerSpec.swift b/tmp/auth0_diff_spm/LoggerSpec.swift
+index 8fc8172..4ea0d83 100644
+--- a/tmp/auth0_diff_original/LoggerSpec.swift
++++ b/tmp/auth0_diff_spm/LoggerSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // LoggerSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Management.swift b/tmp/auth0_diff_spm/Management.swift
+index 839bfad..5ddc764 100644
+--- a/tmp/auth0_diff_original/Management.swift
++++ b/tmp/auth0_diff_spm/Management.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Management.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -72,3 +74,5 @@ struct Management: Trackable, Loggable {
+         ]
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/ManagementError.swift b/tmp/auth0_diff_spm/ManagementError.swift
+index ae54f08..e54c3a7 100644
+--- a/tmp/auth0_diff_original/ManagementError.swift
++++ b/tmp/auth0_diff_spm/ManagementError.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ManagementError.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -93,3 +95,5 @@ extension ManagementError: CustomNSError {
+         ]
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/ManagementSpec.swift b/tmp/auth0_diff_spm/ManagementSpec.swift
+index 33c8932..1c31f03 100644
+--- a/tmp/auth0_diff_original/ManagementSpec.swift
++++ b/tmp/auth0_diff_spm/ManagementSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ManagementSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Matchers.swift b/tmp/auth0_diff_spm/Matchers.swift
+index e859d60..98b90b4 100644
+--- a/tmp/auth0_diff_original/Matchers.swift
++++ b/tmp/auth0_diff_spm/Matchers.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // Matchers.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -22,6 +23,7 @@
+ 
+ import Foundation
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ import Nimble
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/MobileWebAuth.swift b/tmp/auth0_diff_spm/MobileWebAuth.swift
+index 293786b..e7487f5 100644
+--- a/tmp/auth0_diff_original/MobileWebAuth.swift
++++ b/tmp/auth0_diff_spm/MobileWebAuth.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // MobileWebAuth.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -329,3 +332,5 @@ extension AuthenticationServicesSessionCallback: ASWebAuthenticationPresentation
+ 
+ @available(iOS 11.0, *)
+ extension SFAuthenticationSession: AuthSession {}
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NSApplication+Shared.swift b/tmp/auth0_diff_spm/NSApplication+Shared.swift
+index 83e469c..b1faefc 100644
+--- a/tmp/auth0_diff_original/NSApplication+Shared.swift
++++ b/tmp/auth0_diff_spm/NSApplication+Shared.swift
+@@ -1,3 +1,6 @@
++#if os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NSApplication+Shared.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -29,3 +32,5 @@ extension NSApplication {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NSData+URLSafe.swift b/tmp/auth0_diff_spm/NSData+URLSafe.swift
+index 1cdbfd8..e90ad97 100644
+--- a/tmp/auth0_diff_original/NSData+URLSafe.swift
++++ b/tmp/auth0_diff_spm/NSData+URLSafe.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NSData+URLSafe.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -31,3 +33,5 @@ public extension Data {
+             .trimmingCharacters(in: CharacterSet(charactersIn: "="))
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NSError+Helper.swift b/tmp/auth0_diff_spm/NSError+Helper.swift
+index f31ed03..9427cce 100644
+--- a/tmp/auth0_diff_original/NSError+Helper.swift
++++ b/tmp/auth0_diff_spm/NSError+Helper.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NSError+Helper.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -26,3 +28,5 @@ public extension NSError {
+     @objc var a0_isManagementError: Bool { return self.domain == ManagementError.errorDomain }
+     @objc var a0_isAuthenticationError: Bool { return self.domain == AuthenticationError.errorDomain }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NSURL+Auth0.swift b/tmp/auth0_diff_spm/NSURL+Auth0.swift
+index f547f84..a364c28 100644
+--- a/tmp/auth0_diff_original/NSURL+Auth0.swift
++++ b/tmp/auth0_diff_spm/NSURL+Auth0.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NSURL+Auth0.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -40,3 +42,5 @@ public extension URL {
+         return URL(string: urlString)!
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NSURLComponents+OAuth2.swift b/tmp/auth0_diff_spm/NSURLComponents+OAuth2.swift
+index 270b40e..22ba320 100644
+--- a/tmp/auth0_diff_original/NSURLComponents+OAuth2.swift
++++ b/tmp/auth0_diff_spm/NSURLComponents+OAuth2.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NSURLComponents+OAuth2.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -44,3 +46,5 @@ extension URLComponents {
+         return dict
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NativeAuth.swift b/tmp/auth0_diff_spm/NativeAuth.swift
+index 3d2a8b2..5405818 100644
+--- a/tmp/auth0_diff_original/NativeAuth.swift
++++ b/tmp/auth0_diff_spm/NativeAuth.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NativeAuth.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -125,3 +128,5 @@ public extension NativeAuthTransaction {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/NativeAuthSpec.swift b/tmp/auth0_diff_spm/NativeAuthSpec.swift
+index e49d0d1..10392c0 100644
+--- a/tmp/auth0_diff_original/NativeAuthSpec.swift
++++ b/tmp/auth0_diff_spm/NativeAuthSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // NativeAuthSpec.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -24,6 +26,7 @@ import Quick
+ import Nimble
+ import SafariServices
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/OAuth2Grant.swift b/tmp/auth0_diff_spm/OAuth2Grant.swift
+index d5261cb..ecf284d 100644
+--- a/tmp/auth0_diff_original/OAuth2Grant.swift
++++ b/tmp/auth0_diff_spm/OAuth2Grant.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // OAuth2Grant.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -195,3 +197,5 @@ private func validate(idToken: String?,
+         callback(nil)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/OAuth2GrantSpec.swift b/tmp/auth0_diff_spm/OAuth2GrantSpec.swift
+index 66a5ac3..9381eb0 100644
+--- a/tmp/auth0_diff_original/OAuth2GrantSpec.swift
++++ b/tmp/auth0_diff_spm/OAuth2GrantSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // OAuth2GrantSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -23,6 +25,7 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/Optional+DebugDescription.swift b/tmp/auth0_diff_spm/Optional+DebugDescription.swift
+index 6581fae..a9c3002 100644
+--- a/tmp/auth0_diff_original/Optional+DebugDescription.swift
++++ b/tmp/auth0_diff_spm/Optional+DebugDescription.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Optional+DebugDescription.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -30,3 +32,5 @@ extension Optional {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Profile.swift b/tmp/auth0_diff_spm/Profile.swift
+index e7fad53..58230f9 100644
+--- a/tmp/auth0_diff_original/Profile.swift
++++ b/tmp/auth0_diff_spm/Profile.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Profile.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -105,3 +107,5 @@ import Foundation
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/ProfileSpec.swift b/tmp/auth0_diff_spm/ProfileSpec.swift
+index ad25238..8ebe82c 100644
+--- a/tmp/auth0_diff_original/ProfileSpec.swift
++++ b/tmp/auth0_diff_spm/ProfileSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ProfileSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Request.swift b/tmp/auth0_diff_spm/Request.swift
+index cdffa21..5245d08 100644
+--- a/tmp/auth0_diff_original/Request.swift
++++ b/tmp/auth0_diff_spm/Request.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Request.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -123,3 +125,5 @@ public struct ConcatRequest<F, S, E: Auth0Error>: Requestable {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Requestable.swift b/tmp/auth0_diff_spm/Requestable.swift
+index ccfcebb..e8d600b 100644
+--- a/tmp/auth0_diff_original/Requestable.swift
++++ b/tmp/auth0_diff_spm/Requestable.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Requestable.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -27,3 +29,5 @@ protocol Requestable {
+ 
+     func start(_ callback: @escaping (Result<ResultType>) -> Void)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Response.swift b/tmp/auth0_diff_spm/Response.swift
+index 64263a3..8a7e23f 100644
+--- a/tmp/auth0_diff_original/Response.swift
++++ b/tmp/auth0_diff_spm/Response.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Response.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -63,3 +65,5 @@ struct Response<E: Auth0Error> {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/ResponseSpec.swift b/tmp/auth0_diff_spm/ResponseSpec.swift
+index 880669d..f5414d7 100644
+--- a/tmp/auth0_diff_original/ResponseSpec.swift
++++ b/tmp/auth0_diff_spm/ResponseSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ResponseSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/ResponseType.swift b/tmp/auth0_diff_spm/ResponseType.swift
+index 70ace68..80fc29d 100644
+--- a/tmp/auth0_diff_original/ResponseType.swift
++++ b/tmp/auth0_diff_spm/ResponseType.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // ResponseType.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -59,3 +61,5 @@ public struct ResponseType: OptionSet {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Responses.swift b/tmp/auth0_diff_spm/Responses.swift
+index 33ee6b5..f175955 100644
+--- a/tmp/auth0_diff_original/Responses.swift
++++ b/tmp/auth0_diff_spm/Responses.swift
+@@ -1,3 +1,4 @@
++import Auth0ObjC // Added by Auth0toSPM
+ // Responses.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -22,6 +23,7 @@
+ 
+ import Foundation
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+@@ -124,7 +126,7 @@ func managementErrorResponse(error: String, description: String, code: String, s
+ }
+ 
+ func jwksResponse(kid: String? = JWKKid) -> HTTPStubsResponse {
+-    #if WEB_AUTH_PLATFORM
++    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+     let jwk = generateRSAJWK()
+     let jwks = ["keys": [["alg": jwk.algorithm,
+                           "kty": jwk.keyType,
+diff --git a/tmp/auth0_diff_original/Result.swift b/tmp/auth0_diff_spm/Result.swift
+index 5d9d166..9e80f82 100644
+--- a/tmp/auth0_diff_original/Result.swift
++++ b/tmp/auth0_diff_spm/Result.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Result.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -32,3 +34,5 @@ public enum Result<T> {
+     case success(result: T)
+     case failure(error: Error)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/SafariSession.swift b/tmp/auth0_diff_spm/SafariSession.swift
+index 1cb9f5b..a298f71 100644
+--- a/tmp/auth0_diff_original/SafariSession.swift
++++ b/tmp/auth0_diff_spm/SafariSession.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // SafariSession.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -52,3 +55,5 @@ extension SafariSession: SFSafariViewControllerDelegate {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/SafariSessionSpec.swift b/tmp/auth0_diff_spm/SafariSessionSpec.swift
+index 596827c..944fb17 100644
+--- a/tmp/auth0_diff_original/SafariSessionSpec.swift
++++ b/tmp/auth0_diff_spm/SafariSessionSpec.swift
+@@ -1,3 +1,6 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
++import UIKit // Added by Auth0toSPM
+ // SafariSessionSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -24,6 +27,7 @@ import Quick
+ import Nimble
+ import SafariServices
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/SessionCallbackTransaction.swift b/tmp/auth0_diff_spm/SessionCallbackTransaction.swift
+index cce1d7b..8df1915 100644
+--- a/tmp/auth0_diff_original/SessionCallbackTransaction.swift
++++ b/tmp/auth0_diff_spm/SessionCallbackTransaction.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // SessionCallbackTransaction.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -40,3 +43,5 @@ class SessionCallbackTransaction: NSObject, AuthTransaction {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/SessionTransaction.swift b/tmp/auth0_diff_spm/SessionTransaction.swift
+index 88abcb1..a1d5361 100644
+--- a/tmp/auth0_diff_original/SessionTransaction.swift
++++ b/tmp/auth0_diff_spm/SessionTransaction.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // SessionTransaction.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -40,3 +43,5 @@ class SessionTransaction: BaseAuthTransaction {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/SilentSafariViewController.swift b/tmp/auth0_diff_spm/SilentSafariViewController.swift
+index 8adb88d..43f8d74 100644
+--- a/tmp/auth0_diff_original/SilentSafariViewController.swift
++++ b/tmp/auth0_diff_spm/SilentSafariViewController.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // SilentSafariViewController.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -45,3 +48,5 @@ class SilentSafariViewController: SFSafariViewController, SFSafariViewController
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/String+URLSafe.swift b/tmp/auth0_diff_spm/String+URLSafe.swift
+index 4619ad4..4766675 100644
+--- a/tmp/auth0_diff_original/String+URLSafe.swift
++++ b/tmp/auth0_diff_spm/String+URLSafe.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // String+URLSafe.swift
+ //
+ // Copyright (c) 2019 Auth0 (http://auth0.com)
+@@ -34,3 +36,5 @@ public extension String {
+         return Data(base64Encoded: base64EncodedString)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/Telemetry.swift b/tmp/auth0_diff_spm/Telemetry.swift
+index 5ad04cc..890763d 100644
+--- a/tmp/auth0_diff_original/Telemetry.swift
++++ b/tmp/auth0_diff_spm/Telemetry.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Telemetry.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -155,3 +157,5 @@ extension Trackable {
+         self.telemetry.wrapped(inLibrary: name, version: version)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/TelemetrySpec.swift b/tmp/auth0_diff_spm/TelemetrySpec.swift
+index 9338919..d4809c6 100644
+--- a/tmp/auth0_diff_original/TelemetrySpec.swift
++++ b/tmp/auth0_diff_spm/TelemetrySpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // TelemetrySpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/TransactionStore.swift b/tmp/auth0_diff_spm/TransactionStore.swift
+index 60194da..369fa00 100644
+--- a/tmp/auth0_diff_original/TransactionStore.swift
++++ b/tmp/auth0_diff_spm/TransactionStore.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // TransactionStore.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -52,3 +55,5 @@ class TransactionStore {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/TransactionStoreSpec.swift b/tmp/auth0_diff_spm/TransactionStoreSpec.swift
+index b38d7b1..f444502 100644
+--- a/tmp/auth0_diff_original/TransactionStoreSpec.swift
++++ b/tmp/auth0_diff_spm/TransactionStoreSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // TransactionStoreSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/UIApplication+Shared.swift b/tmp/auth0_diff_spm/UIApplication+Shared.swift
+index 88c226a..78b6cfb 100644
+--- a/tmp/auth0_diff_original/UIApplication+Shared.swift
++++ b/tmp/auth0_diff_spm/UIApplication+Shared.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // UIApplication+Shared.swift
+ //
+ // Copyright (c) 2020 Auth0 (http://auth0.com)
+@@ -29,3 +32,5 @@ extension UIApplication {
+     }
+ 
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/UserInfo.swift b/tmp/auth0_diff_spm/UserInfo.swift
+index 7990c05..9099325 100644
+--- a/tmp/auth0_diff_original/UserInfo.swift
++++ b/tmp/auth0_diff_spm/UserInfo.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // UserInfo.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+@@ -137,3 +139,5 @@ import Foundation
+         self.init(sub: sub, name: name, givenName: givenName, familyName: familyName, middleName: middleName, nickname: nickname, preferredUsername: preferredUsername, profile: profile, picture: picture, website: website, email: email, emailVerified: emailVerified, gender: gender, birthdate: birthdate, zoneinfo: zoneinfo, locale: locale, phoneNumber: phoneNumber, phoneNumberVerified: phoneNumberVerified, address: address, updatedAt: updatedAt, customClaims: customClaims)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/UserInfoSpec.swift b/tmp/auth0_diff_spm/UserInfoSpec.swift
+index 5ab0987..67850f8 100644
+--- a/tmp/auth0_diff_original/UserInfoSpec.swift
++++ b/tmp/auth0_diff_spm/UserInfoSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // UserInfoSpec.swift
+ //
+ // Copyright (c) 2017 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/UserPatchAttributes.swift b/tmp/auth0_diff_spm/UserPatchAttributes.swift
+index b0d6619..35df103 100644
+--- a/tmp/auth0_diff_original/UserPatchAttributes.swift
++++ b/tmp/auth0_diff_spm/UserPatchAttributes.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // UserPatchAttributes.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -172,3 +174,5 @@ public class UserPatchAttributes {
+         return self
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/UserPatchAttributesSpec.swift b/tmp/auth0_diff_spm/UserPatchAttributesSpec.swift
+index 3f9f63a..cf48687 100644
+--- a/tmp/auth0_diff_original/UserPatchAttributesSpec.swift
++++ b/tmp/auth0_diff_spm/UserPatchAttributesSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // UserPatchAttributesSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/Users.swift b/tmp/auth0_diff_spm/Users.swift
+index 9cdcc8b..3f960d6 100644
+--- a/tmp/auth0_diff_original/Users.swift
++++ b/tmp/auth0_diff_spm/Users.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // Users.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -329,3 +331,5 @@ private func components(baseURL: URL, path: String) -> URLComponents {
+     let url = baseURL.appendingPathComponent(path)
+     return URLComponents(url: url, resolvingAgainstBaseURL: true)!
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/UsersSpec.swift b/tmp/auth0_diff_spm/UsersSpec.swift
+index 80e3677..927ab63 100644
+--- a/tmp/auth0_diff_original/UsersSpec.swift
++++ b/tmp/auth0_diff_spm/UsersSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // UsersSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -23,6 +25,7 @@
+ import Quick
+ import Nimble
+ import OHHTTPStubs
++import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+ 
+ @testable import Auth0
+ 
+diff --git a/tmp/auth0_diff_original/WebAuthError.swift b/tmp/auth0_diff_spm/WebAuthError.swift
+index 8abef4e..396eeff 100644
+--- a/tmp/auth0_diff_original/WebAuthError.swift
++++ b/tmp/auth0_diff_spm/WebAuthError.swift
+@@ -1,3 +1,5 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // WebAuthError.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -94,3 +96,5 @@ public enum WebAuthError: CustomNSError {
+         }
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/WebAuthErrorSpec.swift b/tmp/auth0_diff_spm/WebAuthErrorSpec.swift
+index 53653b8..90580b7 100644
+--- a/tmp/auth0_diff_original/WebAuthErrorSpec.swift
++++ b/tmp/auth0_diff_spm/WebAuthErrorSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // WebAuthErrorSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/WebAuthSpec.swift b/tmp/auth0_diff_spm/WebAuthSpec.swift
+index dedb4c9..69450a6 100644
+--- a/tmp/auth0_diff_original/WebAuthSpec.swift
++++ b/tmp/auth0_diff_spm/WebAuthSpec.swift
+@@ -1,3 +1,5 @@
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // WebAuthSpec.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+diff --git a/tmp/auth0_diff_original/WebAuthenticatable.swift b/tmp/auth0_diff_spm/WebAuthenticatable.swift
+index a27e420..efbc9eb 100644
+--- a/tmp/auth0_diff_original/WebAuthenticatable.swift
++++ b/tmp/auth0_diff_spm/WebAuthenticatable.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // WebAuthenticatable.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -243,3 +246,5 @@ public protocol WebAuthenticatable: Trackable, Loggable {
+      */
+     func clearSession(federated: Bool, callback: @escaping (Bool) -> Void)
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/_ObjectiveAuthenticationAPI.swift b/tmp/auth0_diff_spm/_ObjectiveAuthenticationAPI.swift
+index 54a5b3a..2b1a6e7 100644
+--- a/tmp/auth0_diff_original/_ObjectiveAuthenticationAPI.swift
++++ b/tmp/auth0_diff_spm/_ObjectiveAuthenticationAPI.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // _ObjectiveAuthenticationAPI.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -185,3 +187,5 @@ private func handleResult(callback: @escaping (NSError?) -> Void) -> (Result<Voi
+         callback(nil)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/_ObjectiveManagementAPI.swift b/tmp/auth0_diff_spm/_ObjectiveManagementAPI.swift
+index 2eb09e0..6faacbd 100644
+--- a/tmp/auth0_diff_original/_ObjectiveManagementAPI.swift
++++ b/tmp/auth0_diff_spm/_ObjectiveManagementAPI.swift
+@@ -1,3 +1,5 @@
++#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // _ObjectiveManagementAPI.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -92,3 +94,5 @@ public class _ObjectiveManagementAPI: NSObject {
+         self.users.tracking(enabled: enabled)
+     }
+ }
++
++#endif // Added by Auth0toSPM
+diff --git a/tmp/auth0_diff_original/_ObjectiveWebAuth.swift b/tmp/auth0_diff_spm/_ObjectiveWebAuth.swift
+index ffc81e5..2337846 100644
+--- a/tmp/auth0_diff_original/_ObjectiveWebAuth.swift
++++ b/tmp/auth0_diff_spm/_ObjectiveWebAuth.swift
+@@ -1,3 +1,6 @@
++#if os(iOS) || os(macOS) // Added by Auth0toSPM
++import Foundation // Added by Auth0toSPM
++import Auth0ObjC // Added by Auth0toSPM
+ // _ObjectiveWebAuth.swift
+ //
+ // Copyright (c) 2016 Auth0 (http://auth0.com)
+@@ -141,3 +144,5 @@ public class _ObjectiveOAuth2: NSObject {
+         self.webAuth.tracking(enabled: enabled)
+     }
+ }
++
++#endif // Added by Auth0toSPM

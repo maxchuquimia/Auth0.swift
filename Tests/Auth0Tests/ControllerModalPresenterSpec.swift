@@ -1,6 +1,6 @@
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
-import UIKit // Added by Auth0toSPM 
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
+import UIKit // Added by Auth0toSPM
 // ControllerModalPresenterSpec.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)

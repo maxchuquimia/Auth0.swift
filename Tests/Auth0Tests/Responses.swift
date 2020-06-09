@@ -1,4 +1,4 @@
-import Auth0ObjC // Added by Auth0toSPM 
+import Auth0ObjC // Added by Auth0toSPM
 // Responses.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -23,7 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 
 import Foundation
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 
 @testable import Auth0
 
@@ -126,7 +126,7 @@ func managementErrorResponse(error: String, description: String, code: String, s
 }
 
 func jwksResponse(kid: String? = JWKKid) -> HTTPStubsResponse {
-    #if os(iOS) || os(macOS)  // Added by Auth0toSPM (original value '#if WEB_AUTH_PLATFORM')
+    #if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
     let jwk = generateRSAJWK()
     let jwks = ["keys": [["alg": jwk.algorithm,
                           "kty": jwk.keyType,

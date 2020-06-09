@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Optional+DebugDescription.swift
 //
 // Copyright (c) 2019 Auth0 (http://auth0.com)
@@ -33,4 +33,4 @@ extension Optional {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

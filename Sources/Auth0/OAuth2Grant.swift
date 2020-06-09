@@ -1,5 +1,5 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // OAuth2Grant.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -198,4 +198,4 @@ private func validate(idToken: String?,
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

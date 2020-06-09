@@ -1,4 +1,4 @@
-import Auth0ObjC // Added by Auth0toSPM 
+import Auth0ObjC // Added by Auth0toSPM
 // JWTAlgorithmSpec.swift
 //
 // Copyright (c) 2019 Auth0 (http://auth0.com)

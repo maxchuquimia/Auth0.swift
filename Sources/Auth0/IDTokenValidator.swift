@@ -1,5 +1,5 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // IDTokenValidator.swift
 //
 // Copyright (c) 2019 Auth0 (http://auth0.com)
@@ -98,4 +98,4 @@ func validate(idToken: String?,
     validator.validate(jwt, callback: callback)
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

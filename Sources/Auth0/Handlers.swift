@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Handlers.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -92,4 +92,4 @@ func noBody(from response: Response<AuthenticationError>, callback: Request<Void
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

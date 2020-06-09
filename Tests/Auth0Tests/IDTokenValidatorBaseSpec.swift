@@ -1,4 +1,4 @@
-import Auth0ObjC // Added by Auth0toSPM 
+import Auth0ObjC // Added by Auth0toSPM
 // IDTokenValidatorBaseSpec.swift
 //
 // Copyright (c) 2020 Auth0 (http://auth0.com)

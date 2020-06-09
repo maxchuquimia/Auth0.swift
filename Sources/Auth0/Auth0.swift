@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Auth0.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -139,7 +139,7 @@ public func users(token: String, domain: String, session: URLSession = .shared) 
     return Management(token: token, url: .a0_url(domain), session: session)
 }
 
-func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return (clientId: "CLIENT_ID", domain: "samples.auth0.com"); // Added by Auth0toSPM (original value 'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {')
+func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return (clientId: "CLIENT_ID", domain: "samples.auth0.com"); // Added by Auth0toSPM(original value 'func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? {')
     guard
         let path = bundle.path(forResource: "Auth0", ofType: "plist"),
         let values = NSDictionary(contentsOfFile: path) as? [String: Any]
@@ -159,4 +159,4 @@ func plistValues(bundle: Bundle) -> (clientId: String, domain: String)? { return
     return (clientId: clientId, domain: domain)
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

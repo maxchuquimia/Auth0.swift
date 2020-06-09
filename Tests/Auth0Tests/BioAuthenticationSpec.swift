@@ -1,5 +1,5 @@
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // BioAuthenticationSpec.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -25,7 +25,7 @@ import Auth0ObjC // Added by Auth0toSPM
 import Quick
 import Nimble
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 import LocalAuthentication
 
 @testable import Auth0

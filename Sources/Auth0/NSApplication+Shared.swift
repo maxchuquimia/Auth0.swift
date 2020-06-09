@@ -1,6 +1,6 @@
-#if os(macOS) // Added by Auth0toSPM 
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(macOS) // Added by Auth0toSPM
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // NSApplication+Shared.swift
 //
 // Copyright (c) 2020 Auth0 (http://auth0.com)
@@ -33,4 +33,4 @@ extension NSApplication {
 
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

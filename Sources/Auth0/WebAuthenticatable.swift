@@ -1,6 +1,6 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Foundation // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Foundation // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // WebAuthenticatable.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -247,4 +247,4 @@ public protocol WebAuthenticatable: Trackable, Loggable {
     func clearSession(federated: Bool, callback: @escaping (Bool) -> Void)
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

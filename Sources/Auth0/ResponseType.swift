@@ -1,5 +1,5 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // ResponseType.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -62,4 +62,4 @@ public struct ResponseType: OptionSet {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

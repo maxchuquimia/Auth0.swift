@@ -1,4 +1,4 @@
-import Auth0ObjC // Added by Auth0toSPM 
+import Auth0ObjC // Added by Auth0toSPM
 // ClaimValidatorsSpec.swift
 //
 // Copyright (c) 2020 Auth0 (http://auth0.com)
@@ -25,7 +25,7 @@ import Foundation
 import Quick
 import Nimble
 import OHHTTPStubs
-import OHHTTPStubsSwift // Added by Auth0toSPM (original value 'import OHHTTPStubs')
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 
 @testable import Auth0
 

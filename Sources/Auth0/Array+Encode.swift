@@ -1,5 +1,5 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // Array+Encode.swift
 //
 // Copyright (c) 2019 Auth0 (http://auth0.com)
@@ -41,4 +41,4 @@ extension Array where Element == UInt8 {
     }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

@@ -1,5 +1,5 @@
-#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // NSError+Helper.swift
 //
 // Copyright (c) 2016 Auth0 (http://auth0.com)
@@ -29,4 +29,4 @@ public extension NSError {
     @objc var a0_isAuthenticationError: Bool { return self.domain == AuthenticationError.errorDomain }
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM

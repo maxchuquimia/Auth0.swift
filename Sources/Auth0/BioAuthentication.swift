@@ -1,5 +1,5 @@
-#if os(iOS) || os(macOS) // Added by Auth0toSPM 
-import Auth0ObjC // Added by Auth0toSPM 
+#if os(iOS) || os(macOS) // Added by Auth0toSPM
+import Auth0ObjC // Added by Auth0toSPM
 // BioAuthentication.swift
 //
 // Copyright (c) 2017 Auth0 (http://auth0.com)
@@ -63,4 +63,4 @@ struct BioAuthentication {
 
 }
 
-#endif // Added by Auth0toSPM 
+#endif // Added by Auth0toSPM
