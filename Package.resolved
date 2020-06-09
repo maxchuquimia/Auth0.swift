@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "JWTDecode",
+        "repositoryURL": "https://github.com/auth0/JWTDecode.swift",
+        "state": {
+          "branch": null,
+          "revision": "7875753f26400a9456e3305ba47255d7629a8a69",
+          "version": "2.4.1"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble",
+        "state": {
+          "branch": null,
+          "revision": "4870c1e2afbcc9dd537b02a6d52fc292fee732b2",
+          "version": "8.1.0"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick",
+        "state": {
+          "branch": null,
+          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
+          "version": "2.2.1"
+        }
+      },
+      {
+        "package": "SimpleKeychain",
+        "repositoryURL": "https://github.com/auth0/SimpleKeychain",
+        "state": {
+          "branch": null,
+          "revision": "2730e2258c48013ead820db9f387b4646a35b435",
+          "version": "0.11.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
