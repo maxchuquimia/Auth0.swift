@@ -1,6 +1,7 @@
 # Auth0toSPM
 
 This is a special fork of Auth0.swift that (theoretically) supports Swift Package Manager 🎉😬
+I say "theoretically" because I've only tested the iOS version in a real project (I was able to log in and get tokens etc, but definitely need to test everything else properly)
 
 ## Why?
 Because Auth0 is _that_ dependency that is stopping us from moving to the Swift Package Manager
@@ -22,8 +23,7 @@ You can see what was changed by the script by searching for `// Added by Auth0to
 Note: generating the package and listing dependencies was done manually. Tests are commented out.
 
 ## TODO
-- Test it. It's late now, I just had a bee in my bonnet about getting it to compile
-- I have a feeling that `watchOS` won't work... maybe because we shouldn't be adding `SimpleKeychain` to it? It does compile... Again, it's late now, I can't remember my thoughts from this morning.
+- I have a feeling that `watchOS` won't work... maybe because we shouldn't be adding `SimpleKeychain` to it? It does compile... It's 11:30pm now now, I can't remember my thoughts from this morning.
 - Get tests to work - most tests pass but then one causes a crash. Currently there are two `.m` test files in the `Auth0.swift` tests that I haven't figured out the best way to copy across.. maybe all tests will be working when that's done. Feel free to make suggestions on how to achieve this. Also tests only run under iOS and you need to update the lowest supported platform from `v9` (in the Podspec) to `.v10` (in the Package.swift) in order to get tests running.
 
 ---
