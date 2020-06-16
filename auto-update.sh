@@ -41,7 +41,7 @@ git tag -l | grep -v "$recent_tag" # only continue executing if the tag doesn't 
 cd ~/xcode/Auth0.swift
 git checkout "$recent_tag"
 cd ~/xcode/Auth0SPM
-git checkout -b "auto-tags/$recent_tab"
+git checkout -b "auto-tags/$recent_tag"
 ruby Auth0toSPM.rb
 #TODO clean this up, make sure we build here too
 git add .
