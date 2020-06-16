@@ -271,7 +271,6 @@ class AuthenticationSpec: QuickSpec {
                     hasNoneOf(["user_profile"])
                     ) { _ in return authResponse(accessToken: AccessToken, idToken: IdToken) }.name = "Token Exchange Apple Success with missing user profile"
 
-
                     stub(condition: isToken(Domain) && hasAtLeast([
                     "grant_type": TokenExchangeGrantType,
                     "subject_token": "VALIDNAMEANDPROFILECODE",
@@ -758,7 +757,6 @@ class AuthenticationSpec: QuickSpec {
                 }
             }
 
-
             it("should create a user with email, username & password") {
                 waitUntil(timeout: Timeout) { done in
                     auth.createUser(email: SupportAtAuth0, username: Support, password: ValidPassword, connection: ConnectionName).start { result in
@@ -769,7 +767,6 @@ class AuthenticationSpec: QuickSpec {
             }
 
             it("should provide error payload from auth api") {
-
                 waitUntil(timeout: Timeout) { done in
                     let code = "invalid_username_password"
                     let description = "Invalid password"
@@ -1378,7 +1375,6 @@ class AuthenticationSpec: QuickSpec {
             }
 
             it("should provide error payload from auth api") {
-
                 waitUntil(timeout: Timeout) { done in
                     let code = "invalid_token"
                     let description = "Invalid token"
@@ -1392,7 +1388,6 @@ class AuthenticationSpec: QuickSpec {
             }
 
             it("should provide error payload from lock auth api") {
-
                 waitUntil(timeout: Timeout) { done in
                     let code = "invalid_token"
                     let description = "Invalid token"
@@ -1443,7 +1438,6 @@ class AuthenticationSpec: QuickSpec {
             }
 
             it("should provide error payload from auth api") {
-
                 waitUntil(timeout: Timeout) { done in
                     let code = "invalid_code"
                     let description = "Invalid code"
