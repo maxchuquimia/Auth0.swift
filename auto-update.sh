@@ -28,7 +28,7 @@ tmp_location="/tmp/a0_$(uuidgen)"
 mkdir -p "$tmp_location"
 cp -R . "$tmp_location/."
 cd "$tmp_location"
-swift build
+# swift build TODO build and test
 cd -
 
 # Commit the changes
