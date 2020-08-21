@@ -33,6 +33,7 @@ import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStub
 
 private let ClientId = "CLIENT_ID"
 private let Domain = URL(string: "https://samples.auth0.com")!
+private let Issuer = "\(Domain.absoluteString)/"
 private let Leeway = 60 * 1000
 
 class MockSafariViewController: SFSafariViewController {
@@ -53,7 +54,7 @@ class SafariSessionSpec: QuickSpec {
         let callback: (Result<Credentials>) -> () = { result = $0 }
         let controller = MockSafariViewController(url: URL(string: "https://auth0.com")!)
         let authentication = Auth0Authentication(clientId: ClientId, url: Domain)
-        let handler = ImplicitGrant(authentication: authentication, leeway: Leeway)
+        let handler = ImplicitGrant(authentication: authentication, issuer: Issuer, leeway: Leeway)
 
         beforeEach {
             result = nil
@@ -129,8 +130,8 @@ class SafariSessionSpec: QuickSpec {
 
                 var session: SafariSession!
                 let generator = A0SHA256ChallengeGenerator()
-                let handler = PKCE(authentication: authentication, redirectURL: RedirectURL, generator: generator, responseType: [.code], leeway: Leeway, nonce: nil)
-                let idToken = generateJWT().string
+                let handler = PKCE(authentication: authentication, redirectURL: RedirectURL, generator: generator, responseType: [.code], issuer: Issuer, leeway: Leeway, nonce: nil)
+                let idToken = generateJWT(iss: Issuer, aud: [ClientId]).string
                 let code = "123456"
 
                 beforeEach {

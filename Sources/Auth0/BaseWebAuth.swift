@@ -39,9 +39,10 @@ class BaseWebAuth: WebAuthenticatable {
 
     private let platform: String
     private(set) var parameters: [String: String] = [:]
+    private(set) var issuer: String
+    private(set) var leeway: Int = 60 * 1000 // Default leeway is 60 seconds
     private var responseType: [ResponseType] = [.code]
     private var nonce: String?
-    private var leeway: Int = 60 * 1000 // Default leeway is 60 seconds
     private var maxAge: Int?
 
     lazy var redirectURL: URL? = {
@@ -60,6 +61,7 @@ class BaseWebAuth: WebAuthenticatable {
         self.url = url
         self.storage = storage
         self.telemetry = telemetry
+        self.issuer = "\(url.absoluteString)/"
     }
 
     func useUniversalLink() -> Self {
@@ -113,6 +115,11 @@ class BaseWebAuth: WebAuthenticatable {
 
     func audience(_ audience: String) -> Self {
         self.parameters["audience"] = audience
+        return self
+    }
+
+    func issuer(_ issuer: String) -> Self {
+        self.issuer = issuer
         return self
     }
 
@@ -249,12 +256,14 @@ class BaseWebAuth: WebAuthenticatable {
             return PKCE(authentication: authentication,
                         redirectURL: redirectURL,
                         responseType: self.responseType,
+                        issuer: self.issuer,
                         leeway: self.leeway,
                         maxAge: self.maxAge,
                         nonce: self.nonce)
         }
         return ImplicitGrant(authentication: authentication,
                              responseType: self.responseType,
+                             issuer: self.issuer,
                              leeway: self.leeway,
                              maxAge: self.maxAge,
                              nonce: self.nonce)
