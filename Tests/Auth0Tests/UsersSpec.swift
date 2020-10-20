@@ -32,7 +32,7 @@ import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStub
 private let Domain = "samples.auth0.com"
 private let Token = UUID().uuidString
 private let NonExistentUser = "auth0|notfound"
-private let Timeout: TimeInterval = 2
+private let Timeout: DispatchTimeInterval = .seconds(2)
 
 class UsersSpec: QuickSpec {
 

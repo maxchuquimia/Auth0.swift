@@ -319,7 +319,7 @@ index 0ba325c..6d7f72b 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/AuthenticationSpec.swift b/tmp/auth0_diff_spm/AuthenticationSpec.swift
-index 5c0b47d..79a2d55 100644
+index 4d6bff3..7766437 100644
 --- a/tmp/auth0_diff_original/AuthenticationSpec.swift
 +++ b/tmp/auth0_diff_spm/AuthenticationSpec.swift
 @@ -1,3 +1,5 @@
@@ -596,7 +596,7 @@ index 8a78fc3..d385e8e 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/CredentialsManagerSpec.swift b/tmp/auth0_diff_spm/CredentialsManagerSpec.swift
-index c057131..aa910f8 100644
+index 17dd792..5788c0a 100644
 --- a/tmp/auth0_diff_original/CredentialsManagerSpec.swift
 +++ b/tmp/auth0_diff_spm/CredentialsManagerSpec.swift
 @@ -1,3 +1,5 @@
@@ -1142,7 +1142,7 @@ index 3d2a8b2..5405818 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/NativeAuthSpec.swift b/tmp/auth0_diff_spm/NativeAuthSpec.swift
-index e49d0d1..10392c0 100644
+index 47a13f0..8fad8b6 100644
 --- a/tmp/auth0_diff_original/NativeAuthSpec.swift
 +++ b/tmp/auth0_diff_spm/NativeAuthSpec.swift
 @@ -1,3 +1,5 @@
@@ -1593,7 +1593,7 @@ index 9cdcc8b..3f960d6 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/UsersSpec.swift b/tmp/auth0_diff_spm/UsersSpec.swift
-index 80e3677..927ab63 100644
+index 2fd4075..1b537d3 100644
 --- a/tmp/auth0_diff_original/UsersSpec.swift
 +++ b/tmp/auth0_diff_spm/UsersSpec.swift
 @@ -1,3 +1,5 @@
@@ -1696,7 +1696,7 @@ index 2eb09e0..6faacbd 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/_ObjectiveWebAuth.swift b/tmp/auth0_diff_spm/_ObjectiveWebAuth.swift
-index b337c9b..4751ae5 100644
+index 0ec9a93..a044cf8 100644
 --- a/tmp/auth0_diff_original/_ObjectiveWebAuth.swift
 +++ b/tmp/auth0_diff_spm/_ObjectiveWebAuth.swift
 @@ -1,3 +1,6 @@
@@ -1706,7 +1706,7 @@ index b337c9b..4751ae5 100644
  // _ObjectiveWebAuth.swift
  //
  // Copyright (c) 2016 Auth0 (http://auth0.com)
-@@ -141,3 +144,5 @@ public class _ObjectiveOAuth2: NSObject {
+@@ -172,3 +175,5 @@ public class _ObjectiveOAuth2: NSObject {
          self.webAuth.tracking(enabled: enabled)
      }
  }
