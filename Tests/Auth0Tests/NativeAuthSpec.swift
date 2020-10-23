@@ -27,6 +27,10 @@ import Nimble
 import SafariServices
 import OHHTTPStubs
 import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+#if SWIFT_PACKAGE
+import OHHTTPStubs
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')Swift
+#endif
 
 @testable import Auth0
 
@@ -38,9 +42,9 @@ private let Scope = "openid"
 private let Parameters: [String: Any] = [:]
 private let Timeout: DispatchTimeInterval = .seconds(2)
 private let AccessToken = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-private let IdToken = generateJWT().string
 private let FacebookToken = UUID().uuidString.replacingOccurrences(of: "-", with: "")
 private let InvalidFacebookToken = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+@available(iOS 10.0, macOS 10.12, *) private let IdToken = generateJWT().string
 
 class MockNativeAuthTransaction: NativeAuthTransaction {
     var connection: String
@@ -86,6 +90,7 @@ class MockNativeAuthTransaction: NativeAuthTransaction {
     }
 }
 
+@available(iOS 10.0, macOS 10.12, *)
 class NativeAuthSpec: QuickSpec {
 
     override func spec() {
@@ -206,7 +211,7 @@ class NativeAuthSpec: QuickSpec {
                             break
                         }
                     }
-                    _ = nativeTransaction.cancel()
+                    nativeTransaction.cancel()
                 }
                 
             }

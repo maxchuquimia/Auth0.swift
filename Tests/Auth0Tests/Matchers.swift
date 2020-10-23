@@ -22,9 +22,14 @@ import Auth0ObjC // Added by Auth0toSPM
 // THE SOFTWARE.
 
 import Foundation
+import Nimble
 import OHHTTPStubs
 import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
-import Nimble
+#if SWIFT_PACKAGE
+import OHHTTPStubs
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')Swift
+#endif
+
 @testable import Auth0
 
 func hasAllOf(_ parameters: [String: String]) -> HTTPStubsTestBlock {

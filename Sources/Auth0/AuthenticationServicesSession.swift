@@ -23,7 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if canImport(AuthenticationServices)
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM') && canImport(AuthenticationServices)
 import AuthenticationServices
 
 @available(iOS 12.0, macOS 10.15, *)

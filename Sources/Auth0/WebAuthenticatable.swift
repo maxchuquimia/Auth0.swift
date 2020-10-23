@@ -1,5 +1,4 @@
 #if os(iOS) || os(macOS) // Added by Auth0toSPM
-import Foundation // Added by Auth0toSPM
 import Auth0ObjC // Added by Auth0toSPM
 // WebAuthenticatable.swift
 //
@@ -22,6 +21,9 @@ import Auth0ObjC // Added by Auth0toSPM
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+import Foundation
 
 /**
  Auth0 component for authenticating with web-based flow
@@ -253,5 +255,6 @@ public protocol WebAuthenticatable: Trackable, Loggable {
      */
     func clearSession(federated: Bool, callback: @escaping (Bool) -> Void)
 }
+#endif
 
 #endif // Added by Auth0toSPM

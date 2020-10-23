@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 /**
 Represents an ongoing Auth transaction with an Identity Provider (Auth0 or a third party).
 
@@ -38,5 +39,6 @@ public protocol AuthTransaction: AuthResumable, AuthCancelable {
     var state: String? { get }
 
 }
+#endif
 
 #endif // Added by Auth0toSPM

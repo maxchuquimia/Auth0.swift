@@ -1,5 +1,4 @@
 #if os(iOS) || os(macOS) // Added by Auth0toSPM
-import Foundation // Added by Auth0toSPM
 import Auth0ObjC // Added by Auth0toSPM
 // SessionCallbackTransaction.swift
 //
@@ -23,6 +22,9 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+import Foundation
+
 class SessionCallbackTransaction: NSObject, AuthTransaction {
 
     var state: String?
@@ -43,5 +45,6 @@ class SessionCallbackTransaction: NSObject, AuthTransaction {
     }
 
 }
+#endif
 
 #endif // Added by Auth0toSPM

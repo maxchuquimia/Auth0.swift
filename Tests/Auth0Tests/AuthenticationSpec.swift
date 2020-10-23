@@ -1,4 +1,3 @@
-import Foundation // Added by Auth0toSPM
 import Auth0ObjC // Added by Auth0toSPM
 // AuthenticationSpec.swift
 //
@@ -22,10 +21,15 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import Foundation
 import Quick
 import Nimble
 import OHHTTPStubs
 import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
+#if SWIFT_PACKAGE
+import OHHTTPStubs
+import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')Swift
+#endif
 
 @testable import Auth0
 

@@ -22,8 +22,12 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 import Foundation
 import JWTDecode
+#if SWIFT_PACKAGE
+import Auth0ObjectiveC
+#endif
 
 enum JWTAlgorithm: String {
     case rs256 = "RS256"
@@ -44,5 +48,6 @@ enum JWTAlgorithm: String {
         }
     }
 }
+#endif
 
 #endif // Added by Auth0toSPM

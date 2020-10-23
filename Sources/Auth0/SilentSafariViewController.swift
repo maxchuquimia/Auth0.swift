@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS)
 import SafariServices
 
 class SilentSafariViewController: SFSafariViewController, SFSafariViewControllerDelegate {
@@ -48,5 +49,6 @@ class SilentSafariViewController: SFSafariViewController, SFSafariViewController
     }
 
 }
+#endif
 
 #endif // Added by Auth0toSPM

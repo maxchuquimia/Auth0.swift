@@ -22,6 +22,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 import Foundation
 
 extension Array where Element == UInt8 {
@@ -40,5 +41,6 @@ extension Array where Element == UInt8 {
         return encodedBytes
     }
 }
+#endif
 
 #endif // Added by Auth0toSPM

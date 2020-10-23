@@ -1,4 +1,3 @@
-import Foundation // Added by Auth0toSPM
 import Auth0ObjC // Added by Auth0toSPM
 // WebAuthErrorSpec.swift
 //
@@ -22,11 +21,11 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import Foundation
 import Quick
 import Nimble
 
 @testable import Auth0
-
 
 class WebAuthErrorSpec: QuickSpec {
 

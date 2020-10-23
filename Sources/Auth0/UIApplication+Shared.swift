@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
 
 extension UIApplication {
@@ -32,5 +33,6 @@ extension UIApplication {
     }
 
 }
+#endif
 
 #endif // Added by Auth0toSPM

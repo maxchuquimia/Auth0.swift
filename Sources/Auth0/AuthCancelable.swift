@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 /**
 Represents a cancelable Auth operation with an Identity Provider (Auth0 or a third party).
 */
@@ -34,5 +35,6 @@ public protocol AuthCancelable {
     func cancel()
 
 }
+#endif
 
 #endif // Added by Auth0toSPM

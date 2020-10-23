@@ -1,5 +1,4 @@
 #if os(iOS) || os(macOS) // Added by Auth0toSPM
-import Foundation // Added by Auth0toSPM
 import Auth0ObjC // Added by Auth0toSPM
 // _ObjectiveWebAuth.swift
 //
@@ -22,6 +21,9 @@ import Auth0ObjC // Added by Auth0toSPM
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
+import Foundation
 
 @objc(A0WebAuth)
 /// Web-based Auth with Auth0
@@ -175,5 +177,6 @@ public class _ObjectiveOAuth2: NSObject {
         self.webAuth.tracking(enabled: enabled)
     }
 }
+#endif
 
 #endif // Added by Auth0toSPM

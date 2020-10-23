@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 /**
  The NativeAuthCredentials struct defines the data requirements necessary to be returned
  from a successul authentication with an IdP SDK as part of the NativeAuthTransaction process.
@@ -128,5 +129,6 @@ public extension NativeAuthTransaction {
         }
     }
 }
+#endif
 
 #endif // Added by Auth0toSPM

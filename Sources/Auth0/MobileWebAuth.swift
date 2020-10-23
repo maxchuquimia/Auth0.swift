@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
 import SafariServices
 #if canImport(AuthenticationServices)
@@ -117,12 +118,16 @@ final class MobileWebAuth: BaseWebAuth, WebAuth {
                                           handler: handler,
                                           callback: callback)
             }
+            #if !targetEnvironment(macCatalyst)
             return SafariServicesSession(authorizeURL: authorizeURL,
                                          redirectURL: redirectURL,
                                          state: state,
                                          handler: handler,
                                          logger: self.logger,
                                          callback: callback)
+            #else
+            return nil // Will never get executed because Catalyst will use AuthenticationServices
+            #endif
         }
         let (controller, finish) = newSafari(authorizeURL, callback: callback)
         let session = SafariSession(controller: controller,
@@ -147,9 +152,13 @@ final class MobileWebAuth: BaseWebAuth, WebAuth {
                                            federated: federated,
                                            callback: callback)
             }
+            #if !targetEnvironment(macCatalyst)
             return SafariServicesSessionCallback(url: logoutURL,
                                                  schemeURL: redirectURL,
                                                  callback: callback)
+            #else
+            return nil // Will never get executed because Catalyst will use AuthenticationServices
+            #endif
         }
         var urlComponents = URLComponents(url: logoutURL, resolvingAgainstBaseURL: true)!
         if federated, let firstQueryItem = urlComponents.queryItems?.first {
@@ -258,6 +267,7 @@ extension AuthTransaction where Self: SessionCallbackTransaction {
 
 }
 
+#if !targetEnvironment(macCatalyst)
 @available(iOS 11.0, *)
 final class SafariServicesSession: SessionTransaction {
 
@@ -310,6 +320,10 @@ final class SafariServicesSessionCallback: SessionCallbackTransaction {
 
 }
 
+@available(iOS 11.0, *)
+extension SFAuthenticationSession: AuthSession {}
+#endif
+
 #if canImport(AuthenticationServices) && swift(>=5.1)
 @available(iOS 13.0, *)
 extension AuthenticationServicesSession: ASWebAuthenticationPresentationContextProviding {
@@ -329,8 +343,6 @@ extension AuthenticationServicesSessionCallback: ASWebAuthenticationPresentation
 
 }
 #endif
-
-@available(iOS 11.0, *)
-extension SFAuthenticationSession: AuthSession {}
+#endif
 
 #endif // Added by Auth0toSPM

@@ -23,6 +23,7 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(macOS)  // Added by Auth0toSPM(original value '#if WEB_AUTH_PLATFORM')
 /**
  The AuthProvider protocol is adopted by objects that are to be used as Native Authentication
  handlers. An object implementing this protocol is intended to supersede the default authentication
@@ -56,5 +57,6 @@ public protocol AuthProvider {
      */
     static func isAvailable() -> Bool
 }
+#endif
 
 #endif // Added by Auth0toSPM
