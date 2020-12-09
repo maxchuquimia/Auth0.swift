@@ -583,7 +583,7 @@ index a5f2f00..dc965d6 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/AuthenticationError.swift b/tmp/auth0_diff_spm/AuthenticationError.swift
-index b3c86a0..e045567 100644
+index 92f437b..efd4e52 100644
 --- a/tmp/auth0_diff_original/AuthenticationError.swift
 +++ b/tmp/auth0_diff_spm/AuthenticationError.swift
 @@ -1,3 +1,5 @@
@@ -592,14 +592,14 @@ index b3c86a0..e045567 100644
  // AuthenticationError.swift
  //
  // Copyright (c) 2016 Auth0 (http://auth0.com)
-@@ -166,3 +168,5 @@ extension AuthenticationError: CustomNSError {
+@@ -169,3 +171,5 @@ extension AuthenticationError: CustomNSError {
          ]
      }
  }
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/AuthenticationErrorSpec.swift b/tmp/auth0_diff_spm/AuthenticationErrorSpec.swift
-index a293dfc..07c1b9a 100644
+index 49dd1f5..5d55236 100644
 --- a/tmp/auth0_diff_original/AuthenticationErrorSpec.swift
 +++ b/tmp/auth0_diff_spm/AuthenticationErrorSpec.swift
 @@ -1,3 +1,5 @@
@@ -661,7 +661,7 @@ index da92e3c..ec20ce8 100644
 +
 +#endif // Added by Auth0toSPM
 diff --git a/tmp/auth0_diff_original/AuthenticationSpec.swift b/tmp/auth0_diff_spm/AuthenticationSpec.swift
-index a898e89..f7ee1f9 100644
+index bf6fc85..74807ee 100644
 --- a/tmp/auth0_diff_original/AuthenticationSpec.swift
 +++ b/tmp/auth0_diff_spm/AuthenticationSpec.swift
 @@ -1,3 +1,4 @@
