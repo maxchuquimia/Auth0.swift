@@ -26,10 +26,6 @@ import JWTDecode
 
 @testable import Auth0
 
-// MARK: - Constants
-
-fileprivate let defaultKid = "key123"
-
 // MARK: - Keys
 
 @available(iOS 10.0, macOS 10.12, *)
@@ -72,7 +68,8 @@ private func generateJWTPayload(iss: String?,
                                 azp: String?,
                                 nonce: String?,
                                 maxAge: Int?,
-                                authTime: Date?) -> String {
+                                authTime: Date?,
+                                organization: String?) -> String {
     var bodyDict: [String: Any] = [:]
     
     if let iss = iss {
@@ -111,14 +108,18 @@ private func generateJWTPayload(iss: String?,
         bodyDict["nonce"] = nonce
     }
     
+    if let organization = organization {
+        bodyDict["org_id"] = organization
+    }
+    
     return encodeJWTPart(from: bodyDict)
 }
 
 @available(iOS 10.0, macOS 10.12, *)
 func generateJWT(alg: String = JWTAlgorithm.rs256.rawValue,
-                 kid: String? = defaultKid,
+                 kid: String? = Kid,
                  iss: String? = "https://tokens-test.auth0.com/",
-                 sub: String? = "auth0|123456789",
+                 sub: String? = Sub,
                  aud: [String]? = ["e31f6f9827c187e8aebdb0839a0c963a"],
                  exp: Date? = Date().addingTimeInterval(86400000), // 1 day in milliseconds
                  iat: Date? = Date().addingTimeInterval(-3600000), // 1 hour in milliseconds
@@ -126,6 +127,7 @@ func generateJWT(alg: String = JWTAlgorithm.rs256.rawValue,
                  nonce: String? = "a1b2c3d4e5",
                  maxAge: Int? = nil,
                  authTime: Date? = nil,
+                 organization: String? = nil,
                  signature: String? = nil) -> JWT {
     let header = generateJWTHeader(alg: alg, kid: kid)
     let body = generateJWTPayload(iss: iss,
@@ -136,7 +138,8 @@ func generateJWT(alg: String = JWTAlgorithm.rs256.rawValue,
                                   azp: azp,
                                   nonce: nonce,
                                   maxAge: maxAge,
-                                  authTime: authTime)
+                                  authTime: authTime,
+                                  organization: organization)
     
     let signableParts = "\(header).\(body)"
     var signaturePart = ""
@@ -180,7 +183,7 @@ private func extractData(from bytes: UnsafePointer<UInt8>) -> (UnsafePointer<UIn
 }
 
 @available(iOS 10.0, macOS 10.12, *)
-func generateRSAJWK(from publicKey: SecKey = TestKeys.rsaPublic, keyId: String = defaultKid) -> JWK {
+func generateRSAJWK(from publicKey: SecKey = TestKeys.rsaPublic, keyId: String = Kid) -> JWK {
     let asn = { (bytes: UnsafePointer<UInt8>) -> JWK? in
         guard bytes.pointee == 0x30 else { return nil } // Checks that this is a SEQUENCE triplet
         

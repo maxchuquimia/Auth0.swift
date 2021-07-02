@@ -1,8 +1,9 @@
 #if os(tvOS) || os(iOS) || os(macOS) || os(watchOS) // Added by Auth0toSPM
+import Foundation // Added by Auth0toSPM
 import Auth0ObjC // Added by Auth0toSPM
-// Result.swift
+//  Challenge.swift
 //
-// Copyright (c) 2016 Auth0 (http://auth0.com)
+// Copyright (c) 2021 Auth0 (http://auth0.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,47 +23,16 @@ import Auth0ObjC // Added by Auth0toSPM
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+public struct Challenge: Codable {
+    public let challengeType: String
+    public let oobCode: String?
+    public let bindingMethod: String?
 
-#if swift(<5.0)
-/**
- Result object for Auth0 APIs requests
-
- - Success: request completed successfuly with it's response body
- - Failure: request failed with a specific error
- */
-public enum Result<T> {
-    case success(T)
-    case failure(Error)
-}
-
-// Shims for older interface with named parameters
-extension Result {
-    @available(*, deprecated, renamed: "success(_:)")
-    public static func success(result: T) -> Self {
-        return .success(result)
-    }
-
-    @available(*, deprecated, renamed: "failure(_:)")
-    public static func failure(error: Error) -> Self {
-        return .failure(error)
+    public enum CodingKeys: String, CodingKey {
+        case challengeType = "challenge_type"
+        case oobCode = "oob_code"
+        case bindingMethod = "binding_method"
     }
 }
-#else
-public typealias Result<T> = Swift.Result<T, Error>
-
-// Shims for older interface with named parameters
-extension Result {
-    @available(*, deprecated, renamed: "success(_:)")
-    public static func success(result: Success) -> Self {
-        return .success(result)
-    }
-
-    @available(*, deprecated, renamed: "failure(_:)")
-    public static func failure(error: Failure) -> Self {
-        return .failure(error)
-    }
-}
-#endif
 
 #endif // Added by Auth0toSPM

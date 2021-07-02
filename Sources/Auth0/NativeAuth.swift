@@ -77,7 +77,7 @@ public protocol NativeAuthTransaction: AuthTransaction {
 
      ```
      let credetials = NativeAuthCredentials(token: "{IdP Token}", extras: [:])
-     let result = Auth0.Result.success(result: credentials)
+     let result = Auth0.Result.success(credentials)
      ```
      - parameter callback: callback with the IdP credentials on success or the cause of the error.
      */
@@ -124,7 +124,7 @@ public extension NativeAuthTransaction {
                 self.authentication.loginSocial(token: credentials.token, connection: self.connection, scope: self.scope, parameters: parameters)
                     .start(callback)
             case .failure(let error):
-                callback(.failure(error: error))
+                callback(.failure(error))
             }
         }
     }

@@ -186,7 +186,8 @@ class IDTokenValidatorSpec: IDTokenValidatorBaseSpec {
                                                           jwksRequest: validatorContext.jwksRequest,
                                                           leeway: validatorContext.leeway,
                                                           maxAge: nil,
-                                                          nonce: nil)
+                                                          nonce: nil,
+                                                          organization: nil)
                     
                     waitUntil { done in
                         validate(idToken: jwt.string,
@@ -207,7 +208,8 @@ class IDTokenValidatorSpec: IDTokenValidatorBaseSpec {
                                                           jwksRequest: validatorContext.jwksRequest,
                                                           leeway: validatorContext.leeway,
                                                           maxAge: nil,
-                                                          nonce: nil)
+                                                          nonce: nil,
+                                                          organization: nil)
                     
                     waitUntil { done in
                         validate(idToken: jwt.string,
@@ -227,7 +229,8 @@ class IDTokenValidatorSpec: IDTokenValidatorBaseSpec {
                                                           jwksRequest: validatorContext.jwksRequest,
                                                           leeway: validatorContext.leeway,
                                                           maxAge: nil,
-                                                          nonce: nonce)
+                                                          nonce: nonce,
+                                                          organization: nil)
                     
                     waitUntil { done in
                         validate(idToken: jwt.string,
@@ -248,7 +251,29 @@ class IDTokenValidatorSpec: IDTokenValidatorBaseSpec {
                                                           jwksRequest: validatorContext.jwksRequest,
                                                           leeway: 1000, // 1 second
                                                           maxAge: maxAge,
-                                                          nonce: nil)
+                                                          nonce: nil,
+                                                          organization: nil)
+                    
+                    waitUntil { done in
+                        validate(idToken: jwt.string,
+                                 with: context,
+                                 signatureValidator: mockSignatureValidator) { error in
+                            expect(error).to(beNil())
+                            done()
+                        }
+                    }
+                }
+                
+                it("should validate a token with an organization") {
+                    let organization = "abc1234"
+                    let jwt = generateJWT(aud: aud, azp: nil, nonce: nil, maxAge: nil, authTime: nil, organization: organization)
+                    let context = IDTokenValidatorContext(issuer: validatorContext.issuer,
+                                                          audience: aud[0],
+                                                          jwksRequest: validatorContext.jwksRequest,
+                                                          leeway: validatorContext.leeway,
+                                                          maxAge: nil,
+                                                          nonce: nil,
+                                                          organization: organization)
                     
                     waitUntil { done in
                         validate(idToken: jwt.string,

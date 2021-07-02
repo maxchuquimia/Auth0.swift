@@ -24,6 +24,7 @@ import Auth0ObjC // Added by Auth0toSPM
 import Foundation
 import Quick
 import Nimble
+import JWTDecode
 import OHHTTPStubs
 import OHHTTPStubsSwift // Added by Auth0toSPM(original value 'import OHHTTPStubs')
 #if SWIFT_PACKAGE
@@ -43,11 +44,9 @@ class IDTokenSignatureValidatorSpec: IDTokenValidatorBaseSpec {
             let signatureValidator = IDTokenSignatureValidator(context: validatorContext)
             
             context("algorithm support") {
-                beforeEach {
-                    stub(condition: isJWKSPath(domain)) { _ in jwksResponse() }
-                }
-                
                 it("should support RS256") {
+                    stub(condition: isJWKSPath(domain)) { _ in jwksResponse() }
+                    
                     let jwt = generateJWT(alg: "RS256")
                     
                     waitUntil { done in
@@ -59,7 +58,8 @@ class IDTokenSignatureValidatorSpec: IDTokenValidatorBaseSpec {
                 }
                 
                 it("should support HS256") {
-                    let jwt = generateJWT(alg: "HS256")
+                    let jwtString = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ"
+                    let jwt = try! decode(jwt: jwtString)
                     
                     waitUntil { done in
                         signatureValidator.validate(jwt) { error in
@@ -100,7 +100,7 @@ class IDTokenSignatureValidatorSpec: IDTokenValidatorBaseSpec {
             
             context("kid validation") {
                 let jwt = generateJWT()
-                let expectedError = IDTokenSignatureValidator.ValidationError.missingPublicKey(kid: "key123")
+                let expectedError = IDTokenSignatureValidator.ValidationError.missingPublicKey(kid: Kid)
                 
                 it("should fail if the jwk has no kid") {
                     stub(condition: isJWKSPath(domain)) { _ in jwksResponse(kid: nil) }
